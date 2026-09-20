@@ -1,0 +1,68 @@
+---
+import { Image } from 'astro:assets';
+import heroImg from '../assets/restaurante/hero-cordero.webp';
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const prefix = lang === 'en' ? '/en' : '';
+---
+
+<section id="hero" class="relative w-full min-h-[calc(100vh-5rem)] h-[calc(100vh-5rem)] flex items-center justify-center overflow-hidden scroll-mt-20">
+  <!-- Background Image with Dark Atmospheric Overlay -->
+  <div class="absolute inset-0 z-0">
+    <Image
+      src={heroImg}
+      alt="Wayko's experiencia gastronómica"
+      class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-1000 ease-out"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <!-- Deep Vignette & Dark Contrast Overlay for Figma fidelity -->
+    <div class="absolute inset-0 bg-linear-to-t from-black/85 via-black/55 to-black/75"></div>
+  </div>
+
+  <!-- Hero Content -->
+  <div class="relative z-10 max-w-5xl mx-auto px-6 text-center text-white flex flex-col items-center">
+    <span class="inline-block text-xs uppercase font-semibold tracking-[0.25em] text-brand-accent mb-4 px-4 py-1.5 rounded-full bg-black/40 backdrop-blur-xs border border-white/10">
+      Restaurante Rural
+    </span>
+    
+    <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-tight max-w-4xl drop-shadow-md">
+      {t('hero.title')}
+    </h1>
+
+    <p class="mt-6 text-lg sm:text-xl text-neutral-200 max-w-2xl font-light leading-relaxed">
+      {t('hero.subtitle')}
+    </p>
+
+    <!-- CTAs -->
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+      <a
+        href={`${prefix}#reservas`}
+        class="inline-flex items-center justify-center px-8 py-3.5 rounded-md bg-brand hover:bg-brand-hover text-white font-medium text-base shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
+      >
+        {t('hero.ctaReserve')}
+      </a>
+      <a
+        href={`${prefix}#menu`}
+        class="inline-flex items-center justify-center px-8 py-3.5 rounded-md bg-white/10 hover:bg-white/20 text-white font-medium text-base backdrop-blur-sm border border-white/20 transition-all duration-200"
+      >
+        {t('hero.ctaMenu')}
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll Down Indicator -->
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 animate-bounce text-white/60">
+    <a href={`${prefix}#menu`} aria-label="Desplazarse hacia abajo">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+    </a>
+  </div>
+</section>
