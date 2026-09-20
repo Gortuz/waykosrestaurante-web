@@ -14,4 +14,7 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
+  devToolbar: {
+    enabled: false
+  }
 });

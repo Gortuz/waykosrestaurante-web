@@ -10,3 +10,9 @@
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
 
+# Menu PDF headers
+/menu.pdf
+  Content-Type: application/pdf
+  Content-Disposition: inline; filename="menu-waykos.pdf"
+  Cache-Control: public, max-age=3600
+
