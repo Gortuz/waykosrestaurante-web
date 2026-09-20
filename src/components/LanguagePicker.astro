@@ -1,0 +1,68 @@
+---
+interface Props {
+  currentLang: "es" | "en";
+}
+
+const { currentLang } = Astro.props;
+const targetUrl = currentLang === "es" ? "/en" : "/";
+const targetTitle = currentLang === "es" ? "Cambiar a Inglés (EN)" : "Switch to Spanish (ES)";
+---
+
+<a
+  href={targetUrl}
+  aria-label={targetTitle}
+  title={targetTitle}
+  class="language-toggle-btn relative inline-flex items-center rounded-full border border-(--border-subtle) bg-(--bg-secondary) p-1 text-xs font-semibold tracking-wider transition-colors duration-200 hover:border-brand cursor-pointer select-none group shrink-0"
+>
+  <!-- ES Badge -->
+  <span
+    class:list={[
+      "px-3 py-1 rounded-full transition-all duration-300 pointer-events-none",
+      currentLang === "es"
+        ? "bg-brand text-white shadow-xs font-bold"
+        : "text-(--text-muted) group-hover:text-(--text-body)",
+    ]}
+  >
+    ES
+  </span>
+
+  <!-- EN Badge -->
+  <span
+    class:list={[
+      "px-3 py-1 rounded-full transition-all duration-300 pointer-events-none",
+      currentLang === "en"
+        ? "bg-brand text-white shadow-xs font-bold"
+        : "text-(--text-muted) group-hover:text-(--text-body)",
+    ]}
+  >
+    EN
+  </span>
+</a>
+
+<script is:inline>
+  // Preserve scroll position without jumping to old URL hashes
+  if (!window.__langToggleInitialized) {
+    window.__langToggleInitialized = true;
+
+    // Save scroll position when clicking language switch
+    document.addEventListener("click", (e) => {
+      const toggle = e.target.closest(".language-toggle-btn");
+      if (!toggle) return;
+      sessionStorage.setItem("waykos-lang-scroll", window.scrollY.toString());
+    });
+
+    // Restore scroll position cleanly on load if arriving from a language switch
+    const savedScroll = sessionStorage.getItem("waykos-lang-scroll");
+    if (savedScroll !== null) {
+      sessionStorage.removeItem("waykos-lang-scroll");
+      // Clear any stale hash so the browser doesn't jump to it
+      if (window.location.hash) {
+        history.replaceState(null, "", window.location.pathname);
+      }
+      window.scrollTo({
+        top: parseInt(savedScroll, 10),
+        behavior: "instant",
+      });
+    }
+  }
+</script>

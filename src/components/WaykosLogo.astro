@@ -1,0 +1,18 @@
+---
+// WaykosLogo.astro
+interface Props {
+  class?: string;
+}
+
+const { class: className = "h-10 sm:h-12 md:h-14 w-auto" } = Astro.props;
+---
+
+<a href="/" class="inline-flex items-center group shrink-0" aria-label="Wayko's Restaurante Rural">
+  <img
+    src="/waykos-horizontal.svg"
+    alt="Wayko's Restaurante"
+    class={`waykos-logo-svg ${className} object-contain transition-all duration-200 group-hover:opacity-90`}
+    loading="eager"
+    fetchpriority="high"
+  />
+</a>

@@ -1,0 +1,246 @@
+---
+import WaykosLogo from './WaykosLogo.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import LanguagePicker from './LanguagePicker.astro';
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const prefix = lang === 'en' ? '/en' : '';
+---
+
+<header class="sticky top-0 z-40 w-full transition-colors duration-200 bg-(--bg-primary)/90 backdrop-blur-md border-b border-(--border-subtle)">
+  <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between gap-2">
+    <!-- Brand Logo -->
+    <div class="flex items-center shrink-0">
+      <WaykosLogo />
+    </div>
+
+    <!-- Right Side: Desktop Nav + Controls (On Mobile: Just Controls & Hamburger) -->
+    <div class="flex items-center gap-6 lg:gap-8">
+      <!-- Desktop Navigation Links (hidden on mobile, visible on md+) -->
+      <nav class="hidden md:flex items-center">
+        <ul class="flex items-center gap-8 text-base font-medium tracking-wide">
+          <li>
+            <a
+              href={`${prefix}#menu`}
+              class="nav-link text-(--text-body) hover:text-brand dark:hover:text-white transition-colors duration-150"
+              data-section="menu"
+            >
+              {t('nav.menu')}
+            </a>
+          </li>
+          <li>
+            <a
+              href={`${prefix}#reservas`}
+              class="nav-link text-(--text-body) hover:text-brand dark:hover:text-white transition-colors duration-150"
+              data-section="reservas"
+            >
+              {t('nav.reservations')}
+            </a>
+          </li>
+          <li>
+            <a
+              href={`${prefix}#equipo`}
+              class="nav-link text-(--text-body) hover:text-brand dark:hover:text-white transition-colors duration-150"
+              data-section="equipo"
+            >
+              {t('nav.team')}
+            </a>
+          </li>
+          <li>
+            <a
+              href={`${prefix}#nosotros`}
+              class="nav-link text-(--text-body) hover:text-brand dark:hover:text-white transition-colors duration-150"
+              data-section="nosotros"
+            >
+              {t('nav.about')}
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Desktop Divider Line -->
+      <div class="hidden md:block h-6 w-px bg-(--border-subtle)"></div>
+
+      <!-- Top Bar Controls: Language Picker & Theme Toggle & Mobile Hamburger -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Language Picker (Visible on both mobile & desktop top bar) -->
+        <LanguagePicker currentLang={lang} />
+
+        <!-- Dark/Light Theme Switcher (Visible on both mobile & desktop top bar) -->
+        <ThemeToggle />
+
+        <!-- Mobile Hamburger Button (Only visible on mobile screens) -->
+        <button
+          id="mobile-menu-toggle"
+          type="button"
+          class="inline-flex md:hidden items-center justify-center w-10 h-10 rounded-full border border-(--border-subtle) bg-(--bg-secondary) text-(--text-body) hover:text-brand dark:hover:text-white focus:outline-none transition-colors cursor-pointer shrink-0"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          aria-label="Abrir menú de navegación"
+        >
+          <!-- Hamburger Bars Icon (Visible when closed) -->
+          <svg id="hamburger-icon" class="w-5 h-5 block transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+
+          <!-- Close X Icon (Visible when open) -->
+          <svg id="close-icon" class="w-5 h-5 hidden transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Navigation Menu -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden w-full bg-(--bg-primary)/98 backdrop-blur-xl border-b border-(--border-subtle) shadow-2xl transition-all duration-300"
+  >
+    <div class="px-5 py-6 max-w-7xl mx-auto">
+      <!-- Nav Links -->
+      <ul class="flex flex-col space-y-1.5 text-base font-medium">
+        <li>
+          <a
+            href={`${prefix}#menu`}
+            class="mobile-nav-link flex items-center justify-between py-3 px-4 rounded-xl text-(--text-body) hover:bg-(--bg-secondary) hover:text-brand dark:hover:text-white transition-colors"
+            data-section="menu"
+          >
+            <span>{t('nav.menu')}</span>
+            <svg class="w-4 h-4 text-(--text-muted) opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a
+            href={`${prefix}#reservas`}
+            class="mobile-nav-link flex items-center justify-between py-3 px-4 rounded-xl text-(--text-body) hover:bg-(--bg-secondary) hover:text-brand dark:hover:text-white transition-colors"
+            data-section="reservas"
+          >
+            <span>{t('nav.reservations')}</span>
+            <svg class="w-4 h-4 text-(--text-muted) opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a
+            href={`${prefix}#equipo`}
+            class="mobile-nav-link flex items-center justify-between py-3 px-4 rounded-xl text-(--text-body) hover:bg-(--bg-secondary) hover:text-brand dark:hover:text-white transition-colors"
+            data-section="equipo"
+          >
+            <span>{t('nav.team')}</span>
+            <svg class="w-4 h-4 text-(--text-muted) opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a
+            href={`${prefix}#nosotros`}
+            class="mobile-nav-link flex items-center justify-between py-3 px-4 rounded-xl text-(--text-body) hover:bg-(--bg-secondary) hover:text-brand dark:hover:text-white transition-colors"
+            data-section="nosotros"
+          >
+            <span>{t('nav.about')}</span>
+            <svg class="w-4 h-4 text-(--text-muted) opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  // Mobile Menu Toggle Logic
+  const mobileToggleBtn = document.getElementById('mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const hamburgerIcon = document.getElementById('hamburger-icon');
+  const closeIcon = document.getElementById('close-icon');
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+  function openMobileMenu() {
+    if (mobileMenu && mobileToggleBtn && hamburgerIcon && closeIcon) {
+      mobileMenu.classList.remove('hidden');
+      mobileToggleBtn.setAttribute('aria-expanded', 'true');
+      hamburgerIcon.classList.add('hidden');
+      hamburgerIcon.classList.remove('block');
+      closeIcon.classList.remove('hidden');
+      closeIcon.classList.add('block');
+    }
+  }
+
+  function closeMobileMenu() {
+    if (mobileMenu && mobileToggleBtn && hamburgerIcon && closeIcon) {
+      mobileMenu.classList.add('hidden');
+      mobileToggleBtn.setAttribute('aria-expanded', 'false');
+      hamburgerIcon.classList.remove('hidden');
+      hamburgerIcon.classList.add('block');
+      closeIcon.classList.add('hidden');
+      closeIcon.classList.remove('block');
+    }
+  }
+
+  if (mobileToggleBtn) {
+    mobileToggleBtn.addEventListener('click', () => {
+      const isExpanded = mobileToggleBtn.getAttribute('aria-expanded') === 'true';
+      if (isExpanded) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    });
+  }
+
+  // Close mobile menu when tapping any nav link
+  mobileLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      closeMobileMenu();
+    });
+  });
+
+  // Close mobile menu on Escape key
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu && !mobileMenu.classList.contains('hidden')) {
+      closeMobileMenu();
+    }
+  });
+
+  // Dynamic active link highlighting on scroll
+  const observerOptions = {
+    root: null,
+    rootMargin: '-20% 0px -70% 0px',
+    threshold: 0
+  };
+
+  const desktopNavLinks = document.querySelectorAll('.nav-link');
+  const allNavLinks = [...desktopNavLinks, ...mobileLinks];
+  const sections = document.querySelectorAll('section[id]');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        allNavLinks.forEach((link) => {
+          if (link.getAttribute('data-section') === id) {
+            link.classList.add('text-brand', 'font-semibold');
+            link.classList.remove('text-(--text-body)');
+          } else {
+            link.classList.remove('text-brand', 'font-semibold');
+            link.classList.add('text-(--text-body)');
+          }
+        });
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach((section) => observer.observe(section));
+</script>
