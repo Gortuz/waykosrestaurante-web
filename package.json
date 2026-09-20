@@ -20,5 +20,10 @@
   "devDependencies": {
     "@astrojs/cloudflare": "^13.5.0",
     "wrangler": "^4.135.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "vite": "7.3.3"
+    }
   }
 }
