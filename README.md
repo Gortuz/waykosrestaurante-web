@@ -127,20 +127,25 @@ waykosrestaurante-web/
    # o bien: npm install
    ```
 
-3. **Iniciar el servidor de desarrollo**:
+3. **Configurar variables de entorno (opcional)**:
+   ```bash
+   cp .env.example .env
+   ```
+
+4. **Iniciar el servidor de desarrollo**:
    ```bash
    pnpm dev
    # o bien: npm run dev
    ```
    Abre [http://localhost:4321](http://localhost:4321) en tu navegador para ver el resultado.
 
-4. **Compilar para producción**:
+5. **Compilar para producción**:
    ```bash
    pnpm build
    # o bien: npm run build
    ```
 
-5. **Previsualizar la compilación de producción**:
+6. **Previsualizar la compilación de producción**:
    ```bash
    pnpm preview
    # o bien: npm run preview
@@ -158,6 +163,10 @@ El proyecto está diseñado para desplegarse de manera automática mediante Git 
 - **Root directory**: `/`
 - **Funciones Edge**: Detectadas automáticamente en la carpeta `functions/`.
 - **Cabeceras de Caché**: Definidas en `public/_headers` (1 año de caché inmutable para assets en `/_astro/*`).
+- **Variables de Entorno en Cloudflare** *(Settings > Environment variables)*:
+  - `GOOGLE_DRIVE_MENU_ID`: ID de Google Drive para la carta en PDF (permite actualizar el menú al instante sin volver a compilar ni hacer commits).
+  - `PUBLIC_WHATSAPP_NUMBER`: Número para reservas por WhatsApp.
+  - `PUBLIC_SITE_URL`: Dominio oficial del sitio web.
 
 ---
 

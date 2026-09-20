@@ -12,7 +12,8 @@ const t = useTranslations(lang);
 // Enlaces oficiales de Redes Sociales y Contacto
 const INSTAGRAM_URL = 'https://www.instagram.com/waykosrestaurante/';
 const FACEBOOK_URL = 'https://www.facebook.com/waykosrestaurante';
-const WHATSAPP_URL = 'https://wa.me/593969143757';
+const WHATSAPP_NUMBER = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '593969143757';
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 ---
 
 <footer class="bg-(--bg-primary) border-t border-(--border-subtle) py-12 px-6 sm:px-8 transition-colors duration-200">
