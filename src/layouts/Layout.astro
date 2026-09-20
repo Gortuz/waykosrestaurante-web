@@ -6,13 +6,78 @@ interface Props {
   title?: string;
   description?: string;
   lang?: Lang;
+  canonical?: string;
+  image?: string;
 }
 
 const {
-  title = "Wayko's Restaurante Rural • Sabores a la leña y cortes de granja",
-  description = "Descubre una experiencia gastronómica rural inolvidable en Wayko's. Corderos de granja, cortes al grill, pizzas a la leña y cocina tradicional.",
   lang = "es"
 } = Astro.props;
+
+const defaultTitle = lang === 'en'
+  ? "Wayko's Rural Restaurant • Farm Lamb & Grilled Steaks in La Esperanza, Ibarra"
+  : "Wayko's Restaurante Rural • Cordero y Borrego en La Esperanza, Ibarra, Ecuador";
+
+const defaultDescription = lang === 'en'
+  ? "Countryside dining in La Esperanza, Ibarra, Ecuador. Pasture-raised farm lamb, artisanal grilled steaks, stone-baked pizzas, and traditional cuisine."
+  : "Restaurante campestre en La Esperanza, Ibarra, Ecuador. Especialistas en cordero y borrego de granja al grill, cortes a la parrilla, pizzas artesanales y gastronomía tradicional.";
+
+const title = Astro.props.title || defaultTitle;
+const description = Astro.props.description || defaultDescription;
+
+const siteUrl = 'https://waykosrestaurante.com';
+const canonicalUrl = Astro.props.canonical || (lang === 'en' ? `${siteUrl}/en/` : `${siteUrl}/`);
+const ogImageUrl = Astro.props.image || `${siteUrl}/og-image.webp`;
+
+// Structured Data (JSON-LD) for Google Rich Snippets (Restaurant)
+const restaurantSchema = {
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "@id": `${siteUrl}/#restaurant`,
+  "name": "Wayko's Restaurante Rural",
+  "alternateName": ["Waykos", "Wayko's", "Waykos Restaurante", "Waykos Ibarra"],
+  "description": description,
+  "url": siteUrl,
+  "image": ogImageUrl,
+  "telephone": "+593969143757",
+  "priceRange": "$$",
+  "servesCuisine": [
+    "Parrillada",
+    "Cordero Asado",
+    "Borrego de Granja",
+    "Cortes al Grill",
+    "Pizzas Artesanales",
+    "Cocina Tradicional Ecuatoriana"
+  ],
+  "hasMenu": `${siteUrl}/menu.pdf`,
+  "menu": `${siteUrl}/menu.pdf`,
+  "acceptsReservations": "True",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Vía Principal La Esperanza",
+    "addressLocality": "La Esperanza, Ibarra",
+    "addressRegion": "Imbabura",
+    "postalCode": "100150",
+    "addressCountry": "EC"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 0.2858276,
+    "longitude": -78.1106109
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Friday", "Saturday", "Sunday"],
+      "opens": "11:00",
+      "closes": "18:00"
+    }
+  ],
+  "sameAs": [
+    "https://www.instagram.com/waykosrestaurante/",
+    "https://www.facebook.com/waykosrestaurante"
+  ]
+};
 ---
 
 <!doctype html>
@@ -29,12 +94,43 @@ const {
     <link rel="shortcut icon" href="/favicon.ico?v=2" />
     <meta name="generator" content={Astro.generator} />
 
+    <!-- SEO Meta Tags -->
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content="restaurante la esperanza ibarra ecuador, restaurante borrego ibarra, cordero asado ibarra, borrego al grill, borrego a la parrilla, restaurante rural ibarra, restaurante campestre ibarra, comida tradicional ecuador, parrilladas la esperanza, restaurantes en imbabura" />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Multi-language Hreflang Tags -->
+    <link rel="alternate" hreflang="es" href="https://waykosrestaurante.com/" />
+    <link rel="alternate" hreflang="en" href="https://waykosrestaurante.com/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://waykosrestaurante.com/" />
+
+    <!-- Open Graph (WhatsApp, Facebook, Social) -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="restaurant" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Wayko's Restaurante Rural - Cordero y Borrego en La Esperanza, Ibarra, Ecuador" />
     <meta property="og:site_name" content="Wayko's Restaurante Rural" />
+    <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'es_EC'} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- Geotargeting Meta Tags for Local SEO (La Esperanza, Ibarra, Ecuador) -->
+    <meta name="geo.region" content="EC-I" />
+    <meta name="geo.placename" content="La Esperanza, Ibarra, Ecuador" />
+    <meta name="geo.position" content="0.285828;-78.110611" />
+    <meta name="ICBM" content="0.285828, -78.110611" />
+
+    <!-- Schema.org JSON-LD Structured Data for Google Restaurant Rich Snippets -->
+    <script type="application/ld+json" set:html={JSON.stringify(restaurantSchema)} />
 
     <!-- Google Fonts: Montserrat & Playfair Display -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -61,4 +157,3 @@ const {
     <slot />
   </body>
 </html>
-

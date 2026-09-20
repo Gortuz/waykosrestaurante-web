@@ -14,7 +14,7 @@ export const ui = {
     'nav.cta': 'Reservar Mesa',
 
     'hero.title': 'Una experiencia gastronómica inolvidable',
-    'hero.subtitle': 'Restaurante Rural • Sabores a la leña, corderos de granja y tradición en cada plato.',
+    'hero.subtitle': 'Restaurante Rural en La Esperanza, Ibarra, Ecuador • Cordero y borrego de granja al grill, cortes a la parrilla y tradición en cada plato.',
     'hero.ctaMenu': 'Ver Menú',
     'hero.ctaReserve': 'Reservar Mesa',
 
@@ -22,8 +22,8 @@ export const ui = {
     'specialties.title': 'Especialidades de la Casa',
     'specialties.subtitle': 'Descubre las preparaciones favoritas de nuestros clientes para iniciar tu viaje gastronómico.',
     'specialties.cta': 'Explorar el menú completo',
-    'specialties.item1.title': 'Cordero de la granja 300g',
-    'specialties.item1.desc': '300gr de steak de pierna al grill acompañado de papas salteadas, ensaladas y chimichurri',
+    'specialties.item1.title': 'Cordero y Borrego de granja (300g)',
+    'specialties.item1.desc': '300gr de tierno corte de pierna de cordero y borrego al grill con papas salteadas, ensalada fresca y chimichurri artesanal.',
     'specialties.item2.title': 'Maduro con queso',
     'specialties.item2.desc': 'Maduros al horno con queso maduro y chicharrón de cerdo',
     'specialties.item3.title': 'Lasaña de carne',
@@ -61,7 +61,7 @@ export const ui = {
     'about.tag': "CONOCE WAYKO'S",
     'about.title': 'Una Manera Diferente de Comer Rico',
     'about.p1': "Wayko's nace con la visión de crear un refugio campestre donde la brasa, el campo y la calidez familiar se funden en una experiencia única.",
-    'about.p2': 'Especializados en cortes a la parrilla, cordero de granja, preparaciones al horno de leña y recetas que rescatan lo mejor de nuestra tierra.',
+    'about.p2': 'Especializados en cortes a la parrilla, cordero y borrego de granja al grill, preparaciones artesanales al horno y recetas que rescatan lo mejor de nuestra tierra en La Esperanza, Ibarra, Ecuador.',
     'about.hoursTitle': 'Horario de Atención',
     'about.hours': 'Viernes, Sábados, Domingos y Feriados • 11:00 AM - 6:00 PM',
     'about.contactTitle': 'Contacto & Reservas',
@@ -80,7 +80,7 @@ export const ui = {
     'menu.tabBebidas': 'Bebidas',
     'menu.close': 'Cerrar',
 
-    'footer.slogan': 'Una manera diferente de comer rico • Restaurante Rural',
+    'footer.slogan': 'Una manera diferente de comer rico • Restaurante Rural en La Esperanza, Ibarra, Ecuador',
     'footer.rights': 'Todos los derechos reservados.',
     'footer.follow': 'Síguenos en redes sociales',
     'footer.comingSoon': 'Próximamente disponible',
@@ -94,7 +94,7 @@ export const ui = {
     'nav.cta': 'Book a Table',
 
     'hero.title': 'An unforgettable gastronomic experience',
-    'hero.subtitle': 'Rural Restaurant • Wood-fired specialties, farm lamb, and rustic culinary tradition in every dish.',
+    'hero.subtitle': 'Rural Restaurant in La Esperanza, Ibarra, Ecuador • Pasture-raised farm lamb, artisanal grilled steaks and country tradition in every dish.',
     'hero.ctaMenu': 'View Menu',
     'hero.ctaReserve': 'Book a Table',
 
@@ -141,7 +141,7 @@ export const ui = {
     'about.tag': "DISCOVER WAYKO'S",
     'about.title': 'A Different Way to Dine Well',
     'about.p1': "Wayko's was born to create a countryside sanctuary where charcoal grills, nature, and family warmth unite into a memorable experience.",
-    'about.p2': 'Specializing in fire-grilled cuts, pasture-raised lamb, artisan pizzas, and cherished recipes celebrating our Andean land.',
+    'about.p2': 'Specializing in fire-grilled cuts, pasture-raised lamb, artisanal pizzas, and traditional recipes celebrating our land in La Esperanza, Ibarra, Ecuador.',
     'about.hoursTitle': 'Operating Hours',
     'about.hours': 'Friday, Saturday, Sunday & Holidays • 11:00 AM - 6:00 PM',
     'about.contactTitle': 'Contact & Bookings',
@@ -160,7 +160,7 @@ export const ui = {
     'menu.tabBebidas': 'Beverages',
     'menu.close': 'Close',
 
-    'footer.slogan': 'A different way to dine well • Rural Restaurant',
+    'footer.slogan': 'A different way to dine well • Rural Restaurant in La Esperanza, Ibarra, Ecuador',
     'footer.rights': 'All rights reserved.',
     'footer.follow': 'Follow us on social media',
     'footer.comingSoon': 'Available soon',

@@ -51,9 +51,9 @@ export const menuItems: MenuItem[] = [
   {
     id: 'cordero-300g',
     category: 'principales',
-    name: { es: 'Cordero de la Granja 300g', en: 'Farm Lamb Steak 300g' },
+    name: { es: 'Cordero y Borrego de la Granja 300g', en: 'Farm Lamb Steak 300g' },
     description: {
-      es: '300gr de corte steak de pierna al grill acompañado de papas salteadas al romero, ensaladas frescas y chimichurri.',
+      es: '300gr de tierno corte de pierna de cordero y borrego al grill acompañado de papas salteadas al romero, ensaladas frescas y chimichurri artesanal.',
       en: '300g prime leg steak grilled over coals, served with rosemary sautéed potatoes, fresh salad & chimichurri.'
     },
     price: '$17.00',
@@ -62,9 +62,9 @@ export const menuItems: MenuItem[] = [
   {
     id: 'cordero-200g',
     category: 'principales',
-    name: { es: 'Cordero de la Granja 200g', en: 'Farm Lamb Steak 200g' },
+    name: { es: 'Cordero y Borrego de la Granja 200g', en: 'Farm Lamb Steak 200g' },
     description: {
-      es: '200gr de steak de brazo al grill acompañado de papas salteadas, ensaladas y chimichurri artesanal.',
+      es: '200gr de jugoso corte de cordero / borrego al grill acompañado de papas salteadas, ensaladas y chimichurri artesanal.',
       en: '200g grilled lamb shoulder steak served with sautéed potatoes, garden salad, and artisan chimichurri.'
     },
     price: '$11.50'
@@ -138,8 +138,8 @@ export const menuItems: MenuItem[] = [
     category: 'pizzas',
     name: { es: 'Pizza Personal Wayko’s', en: 'Personal Artisan Pizza' },
     description: {
-      es: '4 porciones a la leña, salsa pomodoro casera, queso mozarella fundido y 2 ingredientes a tu elección.',
-      en: '4 wood-fired slices, homemade pomodoro sauce, melted mozzarella, and 2 premium toppings of your choice.'
+      es: '4 porciones artesanales al horno, salsa pomodoro casera, queso mozarella fundido y 2 ingredientes a tu elección.',
+      en: '4 artisan slices, homemade pomodoro sauce, melted mozzarella, and 2 premium toppings of your choice.'
     },
     price: '$7.00'
   },
@@ -148,8 +148,8 @@ export const menuItems: MenuItem[] = [
     category: 'pizzas',
     name: { es: 'Pizza Mediana Wayko’s', en: 'Medium Artisan Pizza' },
     description: {
-      es: '8 porciones a la leña, salsa pomodoro casera, queso mozarella fundido y 2 ingredientes a tu elección.',
-      en: '8 wood-fired slices, homemade pomodoro sauce, melted mozzarella, and 2 premium toppings of your choice.'
+      es: '8 porciones artesanales al horno, salsa pomodoro casera, queso mozarella fundido y 2 ingredientes a tu elección.',
+      en: '8 artisan slices, homemade pomodoro sauce, melted mozzarella, and 2 premium toppings of your choice.'
     },
     price: '$13.00',
     popular: true
