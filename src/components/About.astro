@@ -1,0 +1,134 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+// Enlaces de mapas y navegación
+const GOOGLE_MAPS_EMBED_SRC = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.76867422638!2d-78.1106109!3d0.2858276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e2a1802839c0005%3A0x5646ba7265b2f694!2sWayko's!5e0!3m2!1ses!2sec!4v1789878435237!5m2!1ses!2sec";
+const GOOGLE_MAPS_NAV_URL = "https://maps.google.com/?q=Wayko's&ll=0.2858276,-78.1106109";
+const WAZE_NAV_URL = "https://waze.com/ul?ll=0.2858276,-78.1106109&navigate=yes";
+---
+
+<section id="nosotros" class="relative min-h-[calc(100vh-5rem)] scroll-mt-20 py-16 sm:py-20 lg:py-10 px-6 sm:px-8 flex flex-col justify-center bg-(--bg-secondary) transition-colors duration-200">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <!-- Story Content Column -->
+      <div class="lg:col-span-7 flex flex-col justify-center">
+        <p class="text-xs uppercase font-bold tracking-[0.2em] text-brand mb-3">
+          {t('about.tag')}
+        </p>
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-(--text-title-secondary) dark:text-white tracking-tight">
+          {t('about.title')}
+        </h2>
+
+        <div class="mt-6 space-y-4 text-base sm:text-lg text-(--text-muted) font-normal leading-relaxed">
+          <p>{t('about.p1')}</p>
+          <p>{t('about.p2')}</p>
+        </div>
+
+        <!-- Info Cards (Hours & Ambiance) -->
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Hours -->
+          <div class="group p-6 rounded-2xl bg-(--bg-primary) border border-(--border-subtle) shadow-sm hover:border-brand/30 transition-all duration-200">
+            <div class="w-10 h-10 rounded-full bg-(--bg-secondary) border border-(--border-subtle) flex items-center justify-center text-(--text-muted) group-hover:bg-brand/10 group-hover:text-brand group-hover:border-brand/30 transition-colors duration-200 mb-3 shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="font-serif text-lg font-semibold text-(--text-title-secondary) dark:text-white group-hover:text-brand transition-colors duration-200">
+              {t('about.hoursTitle')}
+            </h3>
+            <p class="mt-1 text-sm text-(--text-muted)">
+              {t('about.hours')}
+            </p>
+          </div>
+
+          <!-- Ambiance -->
+          <div class="group p-6 rounded-2xl bg-(--bg-primary) border border-(--border-subtle) shadow-sm hover:border-brand-accent/30 transition-all duration-200">
+            <div class="w-10 h-10 rounded-full bg-(--bg-secondary) border border-(--border-subtle) flex items-center justify-center text-(--text-muted) group-hover:bg-brand-accent/10 group-hover:text-brand-accent group-hover:border-brand-accent/30 transition-colors duration-200 mb-3 shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <h3 class="font-serif text-lg font-semibold text-(--text-title-secondary) dark:text-white group-hover:text-brand-accent transition-colors duration-200">
+              {t('about.locationTitle')}
+            </h3>
+            <p class="mt-1 text-sm text-(--text-muted)">
+              {t('about.location')}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Google Map Column -->
+      <div class="lg:col-span-5 relative flex flex-col justify-center">
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-(--border-subtle) bg-(--bg-primary) flex flex-col">
+          <!-- Google Maps Iframe Container: cropped only on mobile (< lg), full on desktop (lg:) -->
+          <div class="relative w-full h-72 sm:h-80 lg:h-96 overflow-hidden bg-neutral-100 dark:bg-neutral-900">
+            <iframe
+              src={GOOGLE_MAPS_EMBED_SRC}
+              class="w-full h-[calc(100%+60px)] -mt-15 lg:mt-0 lg:h-full border-0 block"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+              title="Ubicación de Wayko's Restaurante Rural en Google Maps"
+            ></iframe>
+          </div>
+
+          <!-- Bottom Navigation Bar (Under the map on all screen sizes, never floating) -->
+          <div class="p-4 sm:p-5 bg-(--bg-primary) border-t border-(--border-subtle) flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3.5">
+            <div class="flex items-center gap-2.5 sm:gap-3">
+              <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-(--bg-secondary) border border-(--border-subtle) flex items-center justify-center text-(--text-muted) hover:bg-brand/10 hover:text-brand hover:border-brand/30 transition-colors duration-200 shrink-0">
+                <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <div class="text-left">
+                <p class="font-semibold text-xs sm:text-sm text-(--text-title-secondary) dark:text-white leading-tight">Wayko's Restaurante</p>
+                <p class="text-[11px] sm:text-xs text-(--text-muted) leading-tight mt-0.5">La Esperanza - Ibarra</p>
+              </div>
+            </div>
+
+            <!-- Direct Navigation Buttons -->
+            <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+              <!-- Google Maps -->
+              <a
+                href={GOOGLE_MAPS_NAV_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-brand hover:bg-brand-hover text-white text-xs font-medium shadow-xs hover:shadow-md transition-all duration-150"
+                title="Abrir en Google Maps"
+              >
+                <span>{t('about.openMaps')}</span>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+
+              <!-- Waze -->
+              <a
+                href={WAZE_NAV_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-(--bg-secondary) hover:bg-neutral-200 dark:hover:bg-neutral-800 text-(--text-body) dark:text-white text-xs font-medium border border-(--border-subtle) transition-all duration-150"
+                title="Abrir en Waze"
+              >
+                <span>{t('about.openWaze')}</span>
+                <svg class="w-3.5 h-3.5 text-(--text-muted)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
