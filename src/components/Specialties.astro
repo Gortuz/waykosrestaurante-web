@@ -18,25 +18,37 @@ const specialties = [
     image: corderoImg,
     title: t('specialties.item1.title'),
     description: t('specialties.item1.desc'),
-    price: '$17.00'
+    price: '$17.00',
+    alt: lang === 'en'
+      ? "Farm-raised lamb and mutton steak on the grill at Wayko's Restaurant Ibarra"
+      : "Plato de cordero y borrego de granja al grill en Wayko's Restaurante Rural La Esperanza, Ibarra"
   },
   {
     image: maduroImg,
     title: t('specialties.item2.title'),
     description: t('specialties.item2.desc'),
-    price: '$4.50'
+    price: '$4.50',
+    alt: lang === 'en'
+      ? "Traditional roasted sweet plantain with aged cheese and chicharrón at Wayko's"
+      : "Maduro con queso artesanal y chicharrón en Wayko's Restaurante Rural Ibarra"
   },
   {
     image: lasanaImg,
     title: t('specialties.item3.title'),
     description: t('specialties.item3.desc'),
-    price: '$8.50'
+    price: '$8.50',
+    alt: lang === 'en'
+      ? "Artisanal beef lasagna baked to perfection at Wayko's Restaurant Ibarra"
+      : "Lasaña de carne artesanal al horno en Wayko's Restaurante Rural La Esperanza, Ibarra"
   },
   {
     image: pizzaImg,
     title: t('specialties.item4.title'),
     description: t('specialties.item4.desc'),
-    price: '$7.00 - $13.00'
+    price: '$7.00 - $13.00',
+    alt: lang === 'en'
+      ? "Fresh artisanal stone-baked pizza at Wayko's Restaurant Ibarra"
+      : "Pizza artesanal horneada en Wayko's Restaurante Rural La Esperanza, Ibarra"
   }
 ];
 ---
@@ -74,7 +86,7 @@ const specialties = [
           <div class="relative aspect-4/3 w-full overflow-hidden bg-neutral-200 dark:bg-neutral-800">
             <Image
               src={item.image}
-              alt={item.title}
+              alt={item.alt}
               class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
               loading="lazy"
             />

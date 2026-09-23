@@ -9,6 +9,9 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+const teamAlt = lang === 'en'
+  ? "Culinary team and grill masters at Wayko's Rural Restaurant in La Esperanza, Ibarra"
+  : "Equipo y parrilleros de Wayko's Restaurante Rural en La Esperanza, Ibarra, Ecuador";
 ---
 
 <section id="equipo" class="relative min-h-[calc(100vh-5rem)] scroll-mt-20 py-16 sm:py-20 lg:py-10 px-6 sm:px-8 flex flex-col justify-center bg-(--bg-primary) transition-colors duration-200">
@@ -19,7 +22,7 @@ const t = useTranslations(lang);
         <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-(--border-subtle)">
           <Image
             src={teamImg}
-            alt="Equipo de Wayko's Restaurante Rural"
+            alt={teamAlt}
             class="w-full h-auto object-cover aspect-4/3 transform hover:scale-102 transition-transform duration-500"
             loading="lazy"
           />
