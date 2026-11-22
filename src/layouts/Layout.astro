@@ -17,9 +17,8 @@ const {
   page = "home",
 } = Astro.props;
 
-const defaultTitle = lang === 'en'
-  ? "Wayko's Rural Restaurant • Farm Lamb & Grilled Steaks in La Esperanza, Ibarra"
-  : "Wayko's Restaurante Rural • Cordero y Borrego en La Esperanza, Ibarra, Ecuador";
+// Título corto de la pestaña (decisión del usuario); la ubicación va en la descripción
+const defaultTitle = lang === 'en' ? "Wayko's Restaurant" : "Wayko's Restaurante";
 
 const defaultDescription = lang === 'en'
   ? "Rural restaurant in La Esperanza, Ibarra, Ecuador. Lamb, grilled steaks and artisanal pizzas, cooked with local, seasonal produce."
