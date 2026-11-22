@@ -75,8 +75,11 @@ Fotos descartadas a propósito: Makilema en mesa blanca sobre fondo negro (#7–
 ## Tono de los textos
 
 - Directo y breve: frases cortas, sin explicar de más.
-- Granja: un solo bloque (título "Conoce nuestra granja" → fotos → texto sobre el ciclo y la crianza), sin separar por animal.
-- **Respeto por los animales y la naturaleza:** contar la granja como un ciclo integral y una crianza con cuidado. Que lo criado llega a la cocina se dice con sobriedad, como parte del ciclo; nunca como gancho de venta ni en imperativo (nada de "de la granja a la parrilla", "prueba lo que criamos", "razas de carne"). El cierre de la página de la granja lleva al mapa, no a reservar.
+- Granja: un solo bloque (título "Conoce nuestra granja" → fotos → tres frases cortas), sin separar por animal. Equipo: solo título y foto.
+- **Nunca relacionar a los animales con la mesa o el plato** (nada que aluda al sacrificio): ni "de la granja a la parrilla", ni "lo que criamos llega a la cocina", ni "prueba lo que criamos", ni "razas de carne", tampoco en meta descripciones. El ciclo de la granja termina en "el pasto alimenta a los borregos". "De la huerta a la mesa" sí se podrá usar cuando haya fotos de la huerta. El cierre de la página de la granja lleva al mapa, no a reservar.
+- **Registro serio y directo:** frases cortas y afirmativas, una idea por frase, hechos en vez de adjetivos, sin conectores de relleno ("además", "todo", "es decir"), sin exclamaciones ni "experiencia única". Hablarle al cliente, no describir procesos como en una presentación.
+- **Lema:** "Una manera diferente de comer rico" (frase de un cliente; usarla tal cual, es el título del hero). Es la única frase con tono de eslogan.
+- El detalle técnico (razas, establo) va como pie de foto que aparece al pasar el cursor o tocar, no en el texto principal.
 
 ## Contenido y datos del negocio
 

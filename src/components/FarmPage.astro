@@ -18,15 +18,21 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 const en = lang === 'en';
 
-// Borregos y gallinas mezclados: la granja se cuenta como un todo
+// Borregos y gallinas mezclados: la granja se cuenta como un todo.
+// El detalle de cada animal se muestra al pasar el cursor, enfocar o tocar la foto.
+const sheep = t('farm.captionSheep');
+const chicken = t('farm.captionChicken');
 const photos = [
-  { src: borregoNegro, alt: en ? 'Black-faced sheep looking at the camera in the barn' : 'Borrego de cara negra mirando a la cámara en el establo' },
-  { src: gallo, alt: en ? 'Free-range rooster on the farm' : 'Gallo criado en libertad en la granja' },
-  { src: rebano, alt: en ? 'Flock of sheep in the barn with trees and mountains behind' : 'Rebaño en el establo con árboles y montañas al fondo' },
-  { src: borregoBlanco, alt: en ? 'White-faced sheep seen through the barn fence' : 'Borrego de cara blanca visto a través de la reja del establo' },
-  { src: gallo2, alt: en ? 'Rooster walking on straw outdoors' : 'Gallo caminando sobre la paja al aire libre' },
-  { src: corral, alt: en ? 'Sheep standing on straw inside the barn' : 'Borregos sobre la paja dentro del establo' },
+  { src: borregoNegro, caption: sheep, alt: en ? 'Black-faced sheep looking at the camera in the barn' : 'Borrego de cara negra mirando a la cámara en el establo' },
+  { src: gallo, caption: chicken, alt: en ? 'Free-range rooster on the farm' : 'Gallo criado en libertad en la granja' },
+  { src: rebano, caption: sheep, alt: en ? 'Flock of sheep in the barn with trees and mountains behind' : 'Rebaño en el establo con árboles y montañas al fondo' },
+  { src: borregoBlanco, caption: sheep, alt: en ? 'White-faced sheep seen through the barn fence' : 'Borrego de cara blanca visto a través de la reja del establo' },
+  { src: gallo2, caption: chicken, alt: en ? 'Rooster walking on straw outdoors' : 'Gallo caminando sobre la paja al aire libre' },
+  { src: corral, caption: sheep, alt: en ? 'Sheep standing on straw inside the barn' : 'Borregos sobre la paja dentro del establo' },
 ];
+
+const figureClass = 'farm-photo group relative overflow-hidden cursor-pointer';
+const captionClass = 'absolute inset-x-0 bottom-0 bg-carbon/85 text-[#eee7df] text-sm sm:text-base px-4 py-3 opacity-0 translate-y-2 transition duration-200 group-hover:opacity-100 group-hover:translate-y-0 group-focus-visible:opacity-100 group-focus-visible:translate-y-0 group-[.is-open]:opacity-100 group-[.is-open]:translate-y-0';
 ---
 
 <section class="bg-surface px-4 sm:px-8 pt-14 sm:pt-20 pb-16 sm:pb-24">
@@ -44,36 +50,41 @@ const photos = [
     </h1>
 
     <!-- Fotos de la granja -->
-    <Image
-      src={potrero}
-      alt={en ? 'Pasture with eucalyptus trees and mountains in La Esperanza, Ibarra' : 'Potrero con eucaliptos y montañas en La Esperanza, Ibarra'}
-      widths={[1024, 1600, 2400, 3200]}
-      quality={85}
-      sizes="(min-width: 1280px) 1216px, 100vw"
-      class="mt-12 sm:mt-16 w-full aspect-4/3 sm:aspect-21/9 object-cover"
-      loading="eager"
-    />
+    <figure class:list={[figureClass, 'mt-12 sm:mt-16']} tabindex="0">
+      <Image
+        src={potrero}
+        alt={en ? 'Pasture with eucalyptus trees and mountains in La Esperanza, Ibarra' : 'Potrero con eucaliptos y montañas en La Esperanza, Ibarra'}
+        widths={[1024, 1600, 2400, 3200]}
+        quality={85}
+        sizes="(min-width: 1280px) 1216px, 100vw"
+        class="w-full aspect-4/3 sm:aspect-21/9 object-cover"
+        loading="eager"
+      />
+      <figcaption class={captionClass}>{t('farm.captionPasture')}</figcaption>
+    </figure>
     <div class="mt-3 sm:mt-6 grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
       {photos.map((photo) => (
-        <Image
-          src={photo.src}
-          alt={photo.alt}
-          widths={[600, 900, 1290, 1600]}
-          quality={85}
-          sizes="(min-width: 1024px) 33vw, 50vw"
-          class="w-full aspect-3/4 object-cover"
-          loading="lazy"
-        />
+        <figure class={figureClass} tabindex="0">
+          <Image
+            src={photo.src}
+            alt={photo.alt}
+            widths={[600, 900, 1290, 1600]}
+            quality={85}
+            sizes="(min-width: 1024px) 33vw, 50vw"
+            class="w-full aspect-3/4 object-cover"
+            loading="lazy"
+          />
+          <figcaption class={captionClass}>{photo.caption}</figcaption>
+        </figure>
       ))}
     </div>
 
-    <!-- El ciclo de la granja y la crianza con respeto -->
-    <p class="mt-14 sm:mt-20 font-serif text-[clamp(1.5rem,2.6vw,2.25rem)] leading-snug text-ink max-w-[38ch]">
-      {t('farm.care')}
-    </p>
-    <p class="mt-6 text-lg text-ink-muted max-w-[52ch]">
-      {t('farm.careDetail')}
-    </p>
+    <!-- Tres frases cortas: qué criamos, el ciclo y sin químicos -->
+    <div class="mt-14 sm:mt-20 space-y-4 font-serif text-[clamp(1.5rem,2.6vw,2.25rem)] leading-snug text-ink max-w-[40ch]">
+      <p>{t('farm.line1')}</p>
+      <p>{t('farm.line2')}</p>
+      <p>{t('farm.line3')}</p>
+    </div>
   </div>
 </section>
 
@@ -105,3 +116,14 @@ const photos = [
     </div>
   </div>
 </section>
+
+<script is:inline>
+  // En pantallas táctiles no hay hover: tocar una foto muestra u oculta su detalle
+  document.querySelectorAll('.farm-photo').forEach((figure) => {
+    figure.addEventListener('click', () => {
+      const open = !figure.classList.contains('is-open');
+      document.querySelectorAll('.farm-photo.is-open').forEach((f) => f.classList.remove('is-open'));
+      figure.classList.toggle('is-open', open);
+    });
+  });
+</script>
