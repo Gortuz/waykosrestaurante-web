@@ -54,7 +54,7 @@ Antes de dar un cambio por terminado: `pnpm check` y `pnpm build` sin errores, y
 - **Platos** con el formato de la carta impresa: nombre y precio sobre una línea roja (`border-rule-accent`).
 - **Evitar:** etiquetas en mayúsculas sobre cada título, cifras de relleno, flechas en los botones, animaciones en cada sección. Títulos en mayúscula inicial (sentence case). Botones que dicen exactamente lo que pasa ("Enviar reserva por WhatsApp").
 - **Hero:** 3 fotos (escritorio: techo con arcoíris, cordero, potrero con arcoíris; móvil: arcoíris vertical, bolones, casa de madera). Sin animales bajo el lema ni fotos con cucharas o personas sosteniendo platos (decisión del usuario): las fotos con personas van en Equipo. Se alternan con fundido cada 7 s (horizontal en escritorio, vertical en móvil, vía `<picture>`), con botón de pausa; con "reducir movimiento" se queda fija. Foto y franja comparten la primera pantalla (`100svh`).
-- Navegación de escritorio desde `lg`; debajo, menú hamburguesa.
+- Navegación de escritorio desde `lg`; debajo, menú hamburguesa. Orden: primero las secciones de la portada (anclas: Menú, Reservas, Equipo, Cómo llegar) y al final, separada por una línea, "La granja" (otra página). No mezclar enlaces que salen de la página entre los que hacen scroll.
 
 ## Fotos
 

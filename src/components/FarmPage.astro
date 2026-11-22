@@ -53,12 +53,14 @@ const captionClass = 'absolute inset-x-0 bottom-0 bg-carbon/85 text-[#eee7df] te
 
 <section class="bg-surface px-4 sm:px-8 pt-14 sm:pt-20 pb-16 sm:pb-24">
   <div class="max-w-7xl mx-auto">
-    <!-- Logo de Wayko's con "Granja" debajo -->
+    <!-- Logo de Wayko's con "Granja" debajo (centrado en móvil) -->
+    <div class="flex justify-center sm:justify-start">
     <div class="inline-flex flex-col items-start" aria-label={`Wayko's ${t('farm.label')}`} role="img">
       <img src="/waykos-horizontal.svg" alt="" width="1182" height="275" class="waykos-logo-svg h-12 sm:h-14 w-auto" />
       <span class="mt-1.5 self-stretch text-center font-sans font-bold text-accent-text text-sm sm:text-base tracking-[0.55em] pl-[0.55em] border-t-2 border-rule-accent pt-1.5" aria-hidden="true">
         {t('farm.label').toUpperCase()}
       </span>
+    </div>
     </div>
 
     <h1 class="mt-10 font-serif font-bold text-[clamp(2.75rem,6.5vw,5.5rem)] leading-[0.98] text-ink max-w-[14ch]">

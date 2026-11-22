@@ -13,14 +13,15 @@ const { lang, page = 'home' } = Astro.props;
 const t = useTranslations(lang);
 const home = routes.home[lang];
 
-// Las secciones de la portada usan ancla; la granja es una página aparte
+// Primero las secciones de la portada (hacen scroll); al final, separada, la granja,
+// que es la única que lleva a otra página.
 const links = [
   { section: 'menu', href: `${home}#menu`, label: t('nav.menu') },
-  { section: 'granja', href: routes.farm[lang], label: t('nav.farm'), current: page === 'farm' },
   { section: 'reservas', href: `${home}#reservas`, label: t('nav.reservations') },
   { section: 'equipo', href: `${home}#equipo`, label: t('nav.team') },
   { section: 'nosotros', href: `${home}#nosotros`, label: t('nav.about') },
 ];
+const farmLink = { href: routes.farm[lang], label: t('nav.farm'), current: page === 'farm' };
 ---
 
 <header class="sticky top-0 z-40 w-full bg-surface/95 backdrop-blur-sm border-b border-rule">
@@ -34,17 +35,26 @@ const links = [
             <li>
               <a
                 href={link.href}
-                class:list={[
-                  'nav-link py-1 border-b-2 text-ink hover:border-accent transition-colors duration-150',
-                  link.current ? 'border-accent text-accent-text' : 'border-transparent',
-                ]}
+                class="nav-link py-1 border-b-2 border-transparent text-ink hover:border-accent transition-colors duration-150"
                 data-section={link.section}
-                aria-current={link.current ? 'page' : undefined}
               >
                 {link.label}
               </a>
             </li>
           ))}
+          <li class="h-5 w-px bg-rule" aria-hidden="true"></li>
+          <li>
+            <a
+              href={farmLink.href}
+              class:list={[
+                'py-1 border-b-2 text-ink hover:border-accent transition-colors duration-150',
+                farmLink.current ? 'border-accent text-accent-text' : 'border-transparent',
+              ]}
+              aria-current={farmLink.current ? 'page' : undefined}
+            >
+              {farmLink.label}
+            </a>
+          </li>
         </ul>
       </nav>
 
@@ -73,17 +83,25 @@ const links = [
   <div id="mobile-menu" class="hidden lg:hidden border-t border-rule bg-surface">
     <ul class="max-w-7xl mx-auto px-4 sm:px-8 py-2 font-serif text-2xl">
       {links.map((link) => (
-        <li class="border-b border-rule last:border-b-0">
+        <li class="border-b border-rule">
           <a
             href={link.href}
-            class:list={['mobile-nav-link block py-4 hover:text-accent-text transition-colors', link.current ? 'text-accent-text' : 'text-ink']}
+            class="mobile-nav-link block py-4 text-ink hover:text-accent-text transition-colors"
             data-section={link.section}
-            aria-current={link.current ? 'page' : undefined}
           >
             {link.label}
           </a>
         </li>
       ))}
+      <li class="border-t-2 border-rule-accent">
+        <a
+          href={farmLink.href}
+          class:list={['mobile-nav-link block py-4 hover:text-accent-text transition-colors', farmLink.current ? 'text-accent-text' : 'text-ink']}
+          aria-current={farmLink.current ? 'page' : undefined}
+        >
+          {farmLink.label}
+        </a>
+      </li>
     </ul>
   </div>
 </header>
