@@ -129,8 +129,8 @@ const restaurantSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(restaurantSchema)} />
 
     <!-- Fuentes alojadas en el propio sitio (Astro Fonts API) -->
-    <Font cssVariable="--font-montserrat" preload />
-    <Font cssVariable="--font-playfair" preload />
+    <Font cssVariable="--font-alegreya-sans" preload />
+    <Font cssVariable="--font-alegreya" preload />
 
     <!-- Anti-FOUC Theme Script: Runs before render to prevent flash of wrong theme -->
     <script is:inline>
@@ -145,7 +145,7 @@ const restaurantSchema = {
       })();
     </script>
   </head>
-  <body class="selection:bg-brand selection:text-white">
+  <body class="selection:bg-poncho selection:text-white">
     <slot />
   </body>
 </html>

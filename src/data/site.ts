@@ -5,6 +5,7 @@ export const SITE_NAME = "Wayko's Restaurante Rural";
 export const WHATSAPP_NUMBER: string = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '593969143757';
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 export const PHONE = `+${WHATSAPP_NUMBER}`;
+export const PHONE_DISPLAY = '096 914 3757';
 
 export const INSTAGRAM_URL = 'https://www.instagram.com/waykosrestaurante/';
 export const FACEBOOK_URL = 'https://www.facebook.com/waykosrestaurante';

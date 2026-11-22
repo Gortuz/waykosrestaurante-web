@@ -4,19 +4,21 @@ import { useTranslations, type Lang } from '../i18n/utils';
 interface Props {
   lang: Lang;
   class?: string;
+  inverted?: boolean;
 }
 
-const { lang, class: className = "h-10 sm:h-12 md:h-14 w-auto" } = Astro.props;
+const { lang, class: className = "h-8 sm:h-10 w-auto", inverted = false } = Astro.props;
 const t = useTranslations(lang);
 const homeUrl = lang === 'en' ? '/en/' : '/';
 ---
 
-<a href={homeUrl} class="inline-flex items-center group shrink-0" aria-label={t('nav.home')}>
+<a href={homeUrl} class="inline-flex items-center shrink-0" aria-label={t('nav.home')}>
   <img
     src="/waykos-horizontal.svg"
     alt=""
-    class={`waykos-logo-svg ${className} object-contain transition-all duration-200 group-hover:opacity-90`}
+    width="1182"
+    height="275"
+    class:list={['waykos-logo-svg object-contain hover:opacity-80', className, { 'is-inverted': inverted }]}
     loading="eager"
-    fetchpriority="high"
   />
 </a>

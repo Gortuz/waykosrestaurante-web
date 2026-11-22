@@ -22,19 +22,19 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.google(),
-      name: 'Montserrat',
-      cssVariable: '--font-montserrat',
-      weights: ['300 700'],
+      name: 'Alegreya',
+      cssVariable: '--font-alegreya',
+      weights: ['400 800'],
       styles: ['normal'],
-      fallbacks: ['sans-serif'],
+      fallbacks: ['serif'],
     },
     {
       provider: fontProviders.google(),
-      name: 'Playfair Display',
-      cssVariable: '--font-playfair',
-      weights: ['500 700'],
+      name: 'Alegreya Sans',
+      cssVariable: '--font-alegreya-sans',
+      weights: [400, 500, 700],
       styles: ['normal'],
-      fallbacks: ['serif'],
+      fallbacks: ['sans-serif'],
     },
   ],
   i18n: {

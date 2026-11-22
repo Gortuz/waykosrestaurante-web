@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import heroImg from '../assets/restaurante/hero-cordero.webp';
 import { useTranslations, type Lang } from '../i18n/utils';
+import { WHATSAPP_URL, PHONE_DISPLAY } from '../data/site';
 
 interface Props {
   lang: Lang;
@@ -12,59 +13,64 @@ const t = useTranslations(lang);
 const prefix = lang === 'en' ? '/en' : '';
 ---
 
-<section id="hero" class="relative w-full min-h-[calc(100svh-5rem)] h-[calc(100svh-5rem)] flex items-center justify-center overflow-hidden scroll-mt-20">
-  <!-- Background Image with Dark Atmospheric Overlay -->
-  <div class="absolute inset-0 z-0">
+<section id="hero" class="relative">
+  <div class="relative h-[calc(100svh-4.5rem)] min-h-[32rem] max-h-[56rem] overflow-hidden bg-carbon">
     <Image
       src={heroImg}
-      alt={lang === 'en' ? "Farm-raised lamb and mutton steak on the grill at Wayko's Restaurant in Ibarra, Ecuador" : "Corte de cordero y borrego al grill en Wayko's Restaurante Rural en La Esperanza, Ibarra"}
+      alt={lang === 'en' ? "Lamb steak from the grill at Wayko's, La Esperanza, Ibarra" : "Steak de cordero a la parrilla en Wayko's, La Esperanza, Ibarra"}
       widths={[640, 1024, 1600, 2400]}
       sizes="100vw"
-      class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-1000 ease-out"
+      class="hero-image absolute inset-0 w-full h-full object-cover object-[center_60%]"
       loading="eager"
       fetchpriority="high"
     />
-    <!-- Deep Vignette & Dark Contrast Overlay for Figma fidelity -->
-    <div class="absolute inset-0 bg-linear-to-t from-black/85 via-black/55 to-black/75"></div>
-  </div>
+    <!-- Solo oscurece la parte inferior, donde va el texto -->
+    <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" aria-hidden="true"></div>
 
-  <!-- Hero Content -->
-  <div class="relative z-10 max-w-5xl mx-auto px-6 text-center text-white flex flex-col items-center">
-    <span class="inline-block text-xs uppercase font-semibold tracking-[0.25em] text-brand-accent mb-4 px-4 py-1.5 rounded-full bg-black/40 backdrop-blur-xs border border-white/10">
-      {t('hero.badge')}
-    </span>
-    
-    <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-tight max-w-4xl drop-shadow-md">
-      {t('hero.title')}
-    </h1>
-
-    <p class="mt-6 text-lg sm:text-xl text-neutral-200 max-w-2xl font-light leading-relaxed">
-      {t('hero.subtitle')}
-    </p>
-
-    <!-- CTAs -->
-    <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
-      <a
-        href={`${prefix}#reservas`}
-        class="inline-flex items-center justify-center px-8 py-3.5 rounded-md bg-brand hover:bg-brand-hover text-white font-medium text-base shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
-      >
-        {t('hero.ctaReserve')}
-      </a>
-      <a
-        href={`${prefix}#menu`}
-        class="inline-flex items-center justify-center px-8 py-3.5 rounded-md bg-white/10 hover:bg-white/20 text-white font-medium text-base backdrop-blur-sm border border-white/20 transition-all duration-200"
-      >
-        {t('hero.ctaMenu')}
-      </a>
+    <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-8 flex flex-col justify-end pb-12 sm:pb-16">
+      <h1 class="font-serif text-white font-bold leading-[0.95] tracking-[-0.01em] text-[clamp(2.75rem,7.5vw,6.25rem)] max-w-[12ch]">
+        {t('hero.title')}
+      </h1>
+      <p class="mt-5 max-w-[46ch] text-lg sm:text-xl text-white/85 leading-snug">
+        {t('hero.subtitle')}
+      </p>
+      <div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
+        <a
+          href={`${prefix}#reservas`}
+          class="inline-flex items-center h-13 px-7 bg-poncho hover:bg-[#6e040b] text-white font-bold text-base transition-colors"
+        >
+          {t('hero.ctaReserve')}
+        </a>
+        <a
+          href={`${prefix}#menu`}
+          class="text-white font-medium underline decoration-white/50 underline-offset-[6px] hover:decoration-white transition-colors"
+        >
+          {t('hero.ctaMenu')}
+        </a>
+      </div>
     </div>
   </div>
 
-  <!-- Scroll Down Indicator -->
-  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 animate-bounce text-white/60">
-    <a href={`${prefix}#menu`} aria-label={t('hero.scrollDown')}>
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-      </svg>
-    </a>
+  <!-- Franja tejida: datos prácticos sobre el rojo poncho -->
+  <div class="bg-poncho text-white">
+    <div class="faja-trim" aria-hidden="true"></div>
+    <dl class="max-w-7xl mx-auto px-4 sm:px-8 py-4 grid grid-cols-1 md:grid-cols-[auto_auto_auto] md:justify-between gap-x-10 gap-y-1.5 text-[0.95rem]">
+      <div class="flex gap-2">
+        <dt class="sr-only">{t('about.hoursTitle')}</dt>
+        <dd>{t('strip.hours')}</dd>
+      </div>
+      <div class="flex gap-2">
+        <dt class="sr-only">{t('about.addressTitle')}</dt>
+        <dd>{t('strip.place')}</dd>
+      </div>
+      <div class="flex gap-2">
+        <dt class="text-white/70">{t('strip.whatsapp')}</dt>
+        <dd>
+          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" class="font-bold underline decoration-white/40 underline-offset-4 hover:decoration-white">
+            {PHONE_DISPLAY}
+          </a>
+        </dd>
+      </div>
+    </dl>
   </div>
 </section>

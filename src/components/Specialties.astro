@@ -19,112 +19,108 @@ const specialties = [
     image: corderoImg,
     title: t('specialties.item1.title'),
     description: t('specialties.item1.desc'),
-    price: '$15.00',
+    price: '15.00',
     alt: lang === 'en'
-      ? "Farm-raised lamb and mutton steak on the grill at Wayko's Restaurant Ibarra"
-      : "Plato de cordero y borrego de granja al grill en Wayko's Restaurante Rural La Esperanza, Ibarra"
+      ? "Grilled lamb leg steak with potatoes and salad at Wayko's"
+      : "Steak de pierna de cordero al grill con papas y ensalada en Wayko's",
   },
   {
     image: maduroImg,
     title: t('specialties.item2.title'),
     description: t('specialties.item2.desc'),
-    price: '$4.50',
+    price: '4.50',
     alt: lang === 'en'
-      ? "Traditional roasted sweet plantain with aged cheese and chicharrón at Wayko's"
-      : "Maduro con queso artesanal y chicharrón en Wayko's Restaurante Rural Ibarra"
+      ? "Baked sweet plantain balls with cheese and pork crackling"
+      : "Bolones de maduro con queso y chicharrón gratinados al horno",
   },
   {
     image: lasanaImg,
     title: t('specialties.item3.title'),
     description: t('specialties.item3.desc'),
-    price: '$7.50',
+    price: '7.50',
     alt: lang === 'en'
-      ? "Artisanal beef lasagna baked to perfection at Wayko's Restaurant Ibarra"
-      : "Lasaña de carne artesanal al horno en Wayko's Restaurante Rural La Esperanza, Ibarra"
+      ? "Lasagna bolognese served with potatoes and salad"
+      : "Lasaña boloñesa servida con papas y ensalada",
   },
   {
     image: pizzaImg,
     title: t('specialties.item4.title'),
     description: t('specialties.item4.desc'),
-    price: '$7.00 - $13.00',
+    price: '7.00 / 13.00',
     alt: lang === 'en'
-      ? "Fresh artisanal stone-baked pizza at Wayko's Restaurant Ibarra"
-      : "Pizza artesanal horneada en Wayko's Restaurante Rural La Esperanza, Ibarra"
-  }
+      ? "Artisanal pizza fresh from the oven at Wayko's"
+      : "Pizza artesanal recién salida del horno en Wayko's",
+  },
 ];
+
+const [featured, ...others] = specialties;
 ---
 
-<section id="menu" class="relative min-h-[calc(100svh-5rem)] scroll-mt-20 py-16 sm:py-20 lg:py-10 px-6 sm:px-8 flex flex-col justify-center overflow-hidden bg-(--bg-primary) transition-colors duration-200">
-  <!-- Subtle Background Watermark Emblem -->
-  <div class="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden opacity-[0.03] dark:opacity-[0.05]">
-    <svg class="w-200 h-200 text-brand dark:text-white" viewBox="0 0 1200 499.85" fill="currentColor">
-      <g transform="translate(-303.64749,112.1956)">
-        <path d="m 359.58,109.72 c 6.59,-0.13 10.49,3.41 14.35,7.27 14.58,14.59 16.23,14.53 31,-0.33 8.56,-8.5 16.93,-17.09 25.56,-25.5 9.23,-9 15.51,-8.89 24.79,0.29 10.44,10.32 20.66,20.86 31.19,31.09 7.27,7.07 12.43,6.88 19.76,-0.13 3.37,-3.22 6.35,-6.93 10,-9.73 6.14,-4.68 12.77,-4.19 18.14,1.1 5.37,5.29 6.49,12.44 1.44,18.12 a 397.75,397.75 0 0 1 -31.57,32 c -6,5.4 -13,3.18 -18.72,-2.58 -10.8,-10.9 -21.74,-21.66 -32.66,-32.44 -8.13,-8 -12,-8.19 -20.11,-0.27 -10.72,10.55 -21.08,21.45 -31.86,31.89 -8.92,8.63 -15.31,8.53 -24,-0.12 q -13.51,-13.41 -26.57,-27.22 c -4.27,-4.55 -5,-10 -2.12,-15.74 2.5,-4.95 6.85,-7.04 11.38,-7.7 z" />
-        <path d="M 467.82,28.62 C 466.74,13.21 442.93,0 442.93,0 c 0,0 -23.94,13 -25.17,28.38 -1.23,15.38 24.83,41.71 24.83,41.71 0,0 26.32,-26.06 25.23,-41.47 z" />
-      </g>
-    </svg>
-  </div>
-
-  <div class="max-w-7xl mx-auto relative z-10">
-    <!-- Header info from Desktop - 2.png -->
-    <div class="max-w-3xl mb-8 lg:mb-10">
-      <p class="text-xs uppercase font-bold tracking-[0.2em] text-brand mb-3">
-        {t('specialties.tag')}
-      </p>
-      <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-(--text-title-secondary) dark:text-white tracking-tight">
+<section id="menu" class="scroll-mt-18 bg-surface py-20 sm:py-28 px-4 sm:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-5 items-end">
+      <h2 class="lg:col-span-7 font-serif font-bold text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] text-ink">
         {t('specialties.title')}
       </h2>
-      <p class="mt-4 text-base sm:text-lg text-(--text-muted) font-normal leading-relaxed">
+      <p class="lg:col-span-5 text-lg text-ink-muted max-w-[44ch]">
         {t('specialties.subtitle')}
       </p>
     </div>
 
-    <!-- 4 Cards Grid from Desktop - 2.png -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8">
-      {specialties.map((item) => (
-        <div class="group flex flex-col rounded-2xl overflow-hidden bg-(--bg-secondary) dark:bg-(--bg-secondary) border border-(--border-subtle) shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-          <!-- Image container -->
-          <div class="relative aspect-4/3 w-full overflow-hidden bg-neutral-200 dark:bg-neutral-800">
-            <Image
-              src={item.image}
-              alt={item.alt}
-              widths={[480, 800, 1200]}
-              sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
-              loading="lazy"
-            />
-            <div class="absolute top-3 right-3 bg-black/70 backdrop-blur-xs text-white text-xs font-semibold px-2.5 py-1 rounded-full">
-              {item.price}
-            </div>
-          </div>
+    <div class="mt-12 sm:mt-16 grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-10">
+      <!-- Plato principal de la casa -->
+      <figure class="lg:col-span-7">
+        <Image
+          src={featured.image}
+          alt={featured.alt}
+          widths={[640, 1024, 1600]}
+          sizes="(min-width: 1024px) 55vw, 100vw"
+          class="w-full aspect-4/3 object-cover"
+          loading="lazy"
+        />
+      </figure>
 
-          <!-- Content -->
-          <div class="p-6 flex flex-col grow justify-between">
-            <div>
-              <h3 class="font-serif text-xl font-semibold text-(--text-title-secondary) dark:text-white group-hover:text-brand transition-colors duration-200">
-                {item.title}
-              </h3>
-              <p class="mt-2.5 text-sm text-(--text-muted) leading-relaxed line-clamp-3">
-                {item.description}
-              </p>
+      <!-- Lista con el formato de la carta impresa: nombre y precio sobre una línea roja -->
+      <ul class="lg:col-span-5 flex flex-col">
+        {specialties.map((item) => (
+          <li class="py-5 first:pt-0">
+            <div class="flex items-baseline justify-between gap-4 pb-2 border-b-2 border-accent">
+              <h3 class="font-serif text-xl sm:text-2xl font-semibold leading-tight text-ink">{item.title}</h3>
+              <span class="font-serif text-xl sm:text-2xl font-semibold text-accent-text whitespace-nowrap tabular-nums">
+                {item.price}
+              </span>
             </div>
-          </div>
-        </div>
+            <p class="mt-2.5 text-ink-muted leading-relaxed">{item.description}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Fotos de los demás platos -->
+    <div class="mt-12 grid grid-cols-3 gap-2 sm:gap-6">
+      {others.map((item) => (
+        <figure>
+          <Image
+            src={item.image}
+            alt={item.alt}
+            widths={[480, 800, 1200]}
+            sizes="33vw"
+            class="w-full aspect-square object-cover"
+            loading="lazy"
+          />
+          <figcaption class="mt-2 text-xs sm:text-sm text-ink-muted">{item.title}</figcaption>
+        </figure>
       ))}
     </div>
 
-    <!-- Action Button from Desktop - 2.png -->
-    <div class="mt-8 lg:mt-10 text-center">
+    <div class="mt-12">
       <a
         href={MENU_PDF_PATH}
         target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center justify-center gap-2.5 px-10 py-4 rounded-xl bg-brand hover:bg-brand-hover text-white font-medium text-base shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5 cursor-pointer"
+        rel="noopener"
+        class="inline-flex items-center h-13 px-7 border-2 border-ink text-ink font-bold hover:bg-ink hover:text-surface transition-colors"
       >
-        <span>{t('specialties.cta')}</span>
-        <svg class="w-4 h-4 opacity-80 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-        </svg>
+        {t('specialties.cta')}
       </a>
     </div>
   </div>
