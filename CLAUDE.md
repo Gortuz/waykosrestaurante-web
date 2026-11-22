@@ -53,7 +53,7 @@ Antes de dar un cambio por terminado: `pnpm check` y `pnpm build` sin errores, y
 - **Elemento distintivo:** la franja roja con zigzag tejido (`.faja-trim`) bajo el hero, sobre el pie de página y en el cierre de la página de la granja.
 - **Platos** con el formato de la carta impresa: nombre y precio sobre una línea roja (`border-rule-accent`).
 - **Evitar:** etiquetas en mayúsculas sobre cada título, cifras de relleno, flechas en los botones, animaciones en cada sección. Títulos en mayúscula inicial (sentence case). Botones que dicen exactamente lo que pasa ("Enviar reserva por WhatsApp").
-- **Hero:** fotos que se alternan con fundido cada 7 s (horizontal en escritorio, vertical en móvil, vía `<picture>`), con botón de pausa; con "reducir movimiento" se queda fija. Foto y franja comparten la primera pantalla (`100svh`).
+- **Hero:** 3 fotos (escritorio: techo con arcoíris, cordero, potrero con arcoíris; móvil: arcoíris vertical, plato frente al campo, casa de madera). Sin animales bajo el lema ni fotos con cucharas o personas sosteniendo platos (decisión del usuario). Se alternan con fundido cada 7 s (horizontal en escritorio, vertical en móvil, vía `<picture>`), con botón de pausa; con "reducir movimiento" se queda fija. Foto y franja comparten la primera pantalla (`100svh`).
 - Navegación de escritorio desde `lg`; debajo, menú hamburguesa.
 
 ## Fotos

@@ -40,7 +40,7 @@ export const ui = {
 
     'farm.label': "Granja",
     'farm.title': "Conoce nuestra granja",
-    'farm.teaser': "Borregos, gallinas, cuyes y huerta, junto al restaurante. Sin químicos.",
+    'farm.teaser': "El campo que rodea al restaurante.",
     'farm.teaserCta': "Ver la granja",
     'farm.metaTitle': "La granja de Wayko's • La Esperanza, Ibarra",
     'farm.metaDescription': "Borregos, gallinas, cuyes y huerta junto a Wayko's, sin químicos. La Esperanza, Ibarra.",
@@ -144,7 +144,7 @@ export const ui = {
 
     'farm.label': "Farm",
     'farm.title': "Discover our farm",
-    'farm.teaser': "Sheep, chickens, guinea pigs and a vegetable garden, next to the restaurant. No chemicals.",
+    'farm.teaser': "The countryside around the restaurant.",
     'farm.teaserCta': "See the farm",
     'farm.metaTitle': "The farm at Wayko's • La Esperanza, Ibarra",
     'farm.metaDescription': "Sheep, chickens, guinea pigs and a vegetable garden next to Wayko's, with no chemicals. La Esperanza, Ibarra.",

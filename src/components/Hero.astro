@@ -1,9 +1,7 @@
 ---
 import { getImage } from 'astro:assets';
 import techoArcoiris from '../assets/fotos/hero-techo-arcoiris.webp';
-import mesera from '../assets/fotos/hero-mesera.webp';
-import chimichurri from '../assets/fotos/hero-chimichurri.webp';
-import borregoNegro from '../assets/fotos/hero-borrego-negro.webp';
+import casaMadera from '../assets/fotos/hero-casa-madera.webp';
 import cordero from '../assets/fotos/hero-cordero.webp';
 import platoCampo from '../assets/fotos/hero-plato-campo.webp';
 import potreroArcoiris from '../assets/fotos/hero-potrero-arcoiris.webp';
@@ -21,11 +19,11 @@ const prefix = lang === 'en' ? '/en' : '';
 
 // Cada diapositiva: foto horizontal para escritorio y vertical para móvil.
 // "position" ajusta el encuadre (object-position) en cada formato.
+// Sin animales bajo el lema: no asociarlos con "comer rico".
 const slides = [
-  { desktop: techoArcoiris, desktopPosition: 'center 45%', mobile: mesera, mobilePosition: 'center 30%' },
-  { desktop: chimichurri, desktopPosition: 'center 55%', mobile: borregoNegro, mobilePosition: 'center 40%' },
+  { desktop: techoArcoiris, desktopPosition: 'center 45%', mobile: arcoirisVertical, mobilePosition: '60% center' },
   { desktop: cordero, desktopPosition: 'center 65%', mobile: platoCampo, mobilePosition: 'center 50%' },
-  { desktop: potreroArcoiris, desktopPosition: 'center 50%', mobile: arcoirisVertical, mobilePosition: '60% center' },
+  { desktop: potreroArcoiris, desktopPosition: 'center 50%', mobile: casaMadera, mobilePosition: 'center 40%' },
 ];
 
 const pictures = await Promise.all(
