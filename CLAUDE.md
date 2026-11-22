@@ -1,6 +1,20 @@
 # Wayko's Restaurante Rural — memoria del proyecto
 
-Sitio web de Wayko's, restaurante rural en La Esperanza, Ibarra (Imbabura, Ecuador). Especialidad: cordero de su propia granja a la parrilla. Bilingüe ES (por defecto) / EN. Los textos de la interfaz y los commits van en español.
+Sitio web de Wayko's, restaurante rural en La Esperanza, Ibarra (Imbabura, Ecuador), con granja propia. Bilingüe ES (por defecto) / EN. Los textos de la interfaz y los commits van en español.
+
+## El restaurante (contexto de marca, dado por el usuario)
+
+**Wayko's es un restaurante rural:** comida de calidad en un lugar de desconexión, donde el entorno natural es protagonista.
+
+**Origen y propuesta:** nace del deseo de ofrecer una gastronomía diferente y variada en el sector, con énfasis en la calidad de los procesos y un balance entre salud y buen sabor.
+
+**La granja es parte del restaurante** (mismo terreno). Se crían borregos, gallinas y cuyes, y en temporada se cosecha de una huerta. Es una granja integral, donde todo cumple un ciclo: el abono vuelve a la tierra, la tierra da el pasto, el pasto alimenta a los borregos, y lo que se cría y cosecha llega a la cocina. Es su forma de respetar la naturaleza.
+- No se usan productos químicos en la granja; se busca acercarse lo más posible a lo orgánico. **No afirmar "orgánico certificado"**: decir "sin productos químicos".
+- Borregos: **cruces de Dorper y Poll Dorset**, criados **estabulados** (en establo). No decir "de pastoreo" ni "pasture-raised".
+- Gallinas: **en libertad**.
+- Además compran **productos locales y de temporada**, que dan variedad a las ensaladas.
+
+**Nunca mencionar:** bambú, carbón, leña (ni brasa, fuego, "charcoal", "wood-fired", "open fire").
 
 ## Comandos
 
@@ -61,14 +75,14 @@ Fotos descartadas a propósito: Makilema en mesa blanca sobre fondo negro (#7–
 ## Tono de los textos
 
 - Directo y breve: frases cortas, sin explicar de más.
-- Granja: un solo bloque (título "Conoce nuestra granja" → fotos → un párrafo sobre la crianza), sin separar por animal.
-- **Respeto por los animales:** hablar de la granja como cuidado y crianza ("con cuidado y respeto"). No relacionar a los animales con el plato ni con la parrilla (nada de "de la granja a la parrilla", "prueba lo que criamos", "razas de carne"). El cierre de la página de la granja lleva al mapa, no a reservar.
+- Granja: un solo bloque (título "Conoce nuestra granja" → fotos → texto sobre el ciclo y la crianza), sin separar por animal.
+- **Respeto por los animales y la naturaleza:** contar la granja como un ciclo integral y una crianza con cuidado. Que lo criado llega a la cocina se dice con sobriedad, como parte del ciclo; nunca como gancho de venta ni en imperativo (nada de "de la granja a la parrilla", "prueba lo que criamos", "razas de carne"). El cierre de la página de la granja lleva al mapa, no a reservar.
 
 ## Contenido y datos del negocio
 
 - Horario: viernes, sábados, domingos y feriados, 11:00–18:00 (`OPENING_HOURS` en `site.ts`; reservas hasta las 17:00).
 - WhatsApp: +593 96 914 3757. Reservas por formulario → mensaje de WhatsApp en el idioma de la página.
-- Granja: en el mismo terreno del restaurante, sin nombre propio (logo de Wayko's con "Granja"/"Farm" debajo). Borregos: **cruces de Dorper y Poll Dorset**, criados **estabulados**. Gallinas **en libertad**, también van a la cocina.
+- Granja: en el mismo terreno del restaurante, sin nombre propio (logo de Wayko's con "Granja"/"Farm" debajo). Detalles en "El restaurante" arriba. Aún no hay fotos de cuyes ni de la huerta.
 - 8 años de aniversario (noviembre 2026, carta de aniversario).
 
 **Actualizar la carta:** reemplazar `public/menu.pdf`; si cambian precios o platos de especialidades, actualizar `src/components/Specialties.astro` (precios) y `specialties.item*` en `translations.ts`.

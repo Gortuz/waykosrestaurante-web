@@ -6,7 +6,7 @@
 
 <p align="center">
   <strong>Sitio web oficial de Wayko's Restaurante Rural</strong><br>
-  Sabores a la leña, corderos de granja y tradición culinaria en La Esperanza, Ibarra, Ecuador.
+  Comida de calidad en un lugar de desconexión, con granja propia, en La Esperanza, Ibarra, Ecuador.
 </p>
 
 <p align="center">
