@@ -31,9 +31,20 @@ const photos = [
   { src: corral, caption: sheep, alt: en ? 'Sheep standing on straw inside the barn' : 'Borregos sobre la paja dentro del establo' },
 ];
 
-const points = [1, 2, 3].map((n) => ({
+// Íconos de línea con terminaciones rectas, en sintonía con el logo (viewBox 48x48)
+const icons = [
+  // Granja: establo con puerta y ventana del henil
+  '<path d="M6 42V20L24 8l18 12v22"/><path d="M3 42h42"/><path d="M17 42V28h14v14"/><path d="M17 28l14 14M31 28L17 42"/><path d="M21 17h6v5h-6z"/>',
+  // Agricultura circular: dos flechas que cierran un ciclo alrededor de un brote
+  '<path d="M37 17A15 15 0 0 0 12 13"/><path d="M11 5v9h9"/><path d="M11 31a15 15 0 0 0 25 4"/><path d="M37 43v-9h-9"/><path d="M24 32V21"/><path d="M24 26c0-5 3-8 8-8 0 5-3 8-8 8z"/><path d="M24 28c0-4-3-6-6-6 0 4 3 6 6 6z"/>',
+  // Huerta: brote saliendo de la tierra
+  '<path d="M8 41h32"/><path d="M24 41V22"/><path d="M24 30c-6 0-10-4-10-10 6 0 10 4 10 10z"/><path d="M24 24c0-6 4-10 10-10 0 6-4 10-10 10z"/>',
+];
+
+const points = [1, 2, 3].map((n, i) => ({
   title: t(`farm.point${n}Title` as 'farm.point1Title'),
   text: t(`farm.point${n}Text` as 'farm.point1Text'),
+  icon: icons[i],
 }));
 
 const figureClass = 'farm-photo group relative overflow-hidden cursor-pointer';
@@ -85,10 +96,25 @@ const captionClass = 'absolute inset-x-0 bottom-0 bg-carbon/85 text-[#eee7df] te
     </div>
 
     <!-- Tres pilares de la granja, con el formato de la carta: título sobre línea roja -->
-    <div class="mt-14 sm:mt-20 grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-10">
+    <div class="mt-14 sm:mt-20 grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-6">
       {points.map((point) => (
-        <div class="border-t-2 border-rule-accent pt-4">
-          <h2 class="font-serif font-bold text-2xl sm:text-3xl leading-tight text-ink">{point.title}</h2>
+        <div class="group relative border-t-2 border-rule-accent p-6 sm:p-8 transition-colors duration-300 hover:bg-surface-alt">
+          <!-- La línea roja se engrosa desde la izquierda al pasar el cursor -->
+          <span class="absolute left-0 -top-0.5 h-1.5 w-0 bg-accent transition-all duration-300 group-hover:w-full" aria-hidden="true"></span>
+          <span class="inline-flex items-center justify-center w-18 h-18 border-2 border-rule-accent text-accent-text transition-all duration-300 group-hover:bg-accent group-hover:border-accent group-hover:text-white">
+            <svg
+              class="w-10 h-10 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-110"
+              viewBox="0 0 48 48"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="square"
+              stroke-linejoin="miter"
+              aria-hidden="true"
+              set:html={point.icon}
+            />
+          </span>
+          <h2 class="mt-6 font-serif font-bold text-2xl sm:text-3xl leading-tight text-ink">{point.title}</h2>
           <p class="mt-2.5 text-lg text-ink-muted max-w-[34ch]">{point.text}</p>
         </div>
       ))}
