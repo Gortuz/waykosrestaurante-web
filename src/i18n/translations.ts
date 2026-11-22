@@ -102,6 +102,10 @@ export const ui = {
     'about.openWazeTitle': 'Abrir en Waze',
     'about.addressTitle': "Dirección",
     'about.address': "Vía principal a La Esperanza, Ibarra, Imbabura.",
+    'about.servicesTitle': "Servicios",
+    'about.parking': "Estacionamiento amplio",
+    'about.greenAreas': "Áreas verdes",
+    'about.pets': "Mascotas bienvenidas",
 
     'footer.slogan': "Restaurante rural en La Esperanza, Ibarra, Ecuador.",
     'footer.rights': 'Todos los derechos reservados.',
@@ -205,6 +209,10 @@ export const ui = {
     'about.openWazeTitle': 'Open in Waze',
     'about.addressTitle': "Address",
     'about.address': "Main road to La Esperanza, Ibarra, Imbabura.",
+    'about.servicesTitle': "Amenities",
+    'about.parking': "Ample parking",
+    'about.greenAreas': "Green areas",
+    'about.pets': "Pets welcome",
 
     'footer.slogan': "Rural restaurant in La Esperanza, Ibarra, Ecuador.",
     'footer.rights': 'All rights reserved.',

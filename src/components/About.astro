@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 import { useTranslations, type Lang } from '../i18n/utils';
 import { GOOGLE_MAPS_EMBED_SRC, GOOGLE_MAPS_NAV_URL, WAZE_NAV_URL } from '../data/site';
 
@@ -10,10 +11,15 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 
 const facts = [
-  { term: t('about.hoursTitle'), detail: t('about.hours') },
-  { term: t('about.addressTitle'), detail: t('about.address') },
-  { term: t('about.locationTitle'), detail: t('about.location') },
-];
+  { icon: 'clock', term: t('about.hoursTitle'), detail: t('about.hours') },
+  { icon: 'pin', term: t('about.addressTitle'), detail: t('about.address') },
+] as const;
+
+const services = [
+  { icon: 'parking', label: t('about.parking') },
+  { icon: 'tree', label: t('about.greenAreas') },
+  { icon: 'paw', label: t('about.pets') },
+] as const;
 ---
 
 <section id="nosotros" class="scroll-mt-18 bg-surface-alt py-20 sm:py-28 px-4 sm:px-8">
@@ -26,12 +32,26 @@ const facts = [
 
       <dl class="mt-10 border-t-2 border-rule-accent">
         {facts.map((fact) => (
-          <div class="grid grid-cols-[7.5rem_1fr] gap-4 py-4 border-b border-rule">
+          <div class="grid grid-cols-[2rem_6rem_1fr] sm:grid-cols-[2rem_7rem_1fr] items-start gap-x-3 py-4 border-b border-rule">
+            <Icon name={fact.icon} class="w-6 h-6 text-accent-text mt-px" />
             <dt class="font-serif font-semibold text-ink">{fact.term}</dt>
             <dd class="text-ink-muted">{fact.detail}</dd>
           </div>
         ))}
       </dl>
+
+      <!-- Servicios del lugar: un ícono por servicio -->
+      <h3 class="sr-only">{t('about.servicesTitle')}</h3>
+      <ul class="mt-6 grid grid-cols-3 gap-3">
+        {services.map((service) => (
+          <li class="group flex flex-col items-center text-center gap-2.5 p-4 border border-rule hover:border-rule-accent transition-colors">
+            <span class="inline-flex items-center justify-center w-12 h-12 border-2 border-rule-accent text-accent-text transition-colors group-hover:bg-accent group-hover:border-accent group-hover:text-white">
+              <Icon name={service.icon} class="w-6 h-6" />
+            </span>
+            <span class="text-sm text-ink leading-tight">{service.label}</span>
+          </li>
+        ))}
+      </ul>
     </div>
 
     <div class="lg:col-span-7 flex flex-col">

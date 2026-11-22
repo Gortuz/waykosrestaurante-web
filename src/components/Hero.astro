@@ -6,6 +6,7 @@ import cordero from '../assets/fotos/hero-cordero.webp';
 import bolones from '../assets/fotos/hero-bolones.webp';
 import potreroArcoiris from '../assets/fotos/hero-potrero-arcoiris.webp';
 import arcoirisVertical from '../assets/fotos/hero-arcoiris-vertical.webp';
+import Icon from './Icon.astro';
 import { useTranslations, type Lang } from '../i18n/utils';
 import { WHATSAPP_URL, PHONE_DISPLAY } from '../data/site';
 
@@ -100,16 +101,16 @@ const pictures = await Promise.all(
   <div class="shrink-0 bg-poncho text-white">
     <div class="faja-trim" aria-hidden="true"></div>
     <dl class="max-w-7xl mx-auto px-4 sm:px-8 py-3 sm:py-4 grid grid-cols-2 md:grid-cols-[auto_auto_auto] md:justify-between gap-x-6 gap-y-1 text-[0.9rem] sm:text-[0.95rem] leading-snug">
-      <div class="col-span-2 md:col-span-1 flex gap-2">
-        <dt class="sr-only">{t('about.hoursTitle')}</dt>
+      <div class="col-span-2 md:col-span-1 flex items-center gap-2">
+        <dt><Icon name="clock" class="w-[1.1em] h-[1.1em] text-maiz" /><span class="sr-only">{t('about.hoursTitle')}</span></dt>
         <dd>{t('strip.hours')}</dd>
       </div>
-      <div class="flex gap-2">
-        <dt class="sr-only">{t('about.addressTitle')}</dt>
+      <div class="flex items-center gap-2">
+        <dt><Icon name="pin" class="w-[1.1em] h-[1.1em] text-maiz" /><span class="sr-only">{t('about.addressTitle')}</span></dt>
         <dd>{t('strip.place')}</dd>
       </div>
-      <div class="flex gap-2">
-        <dt class="text-white/70">{t('strip.whatsapp')}</dt>
+      <div class="flex items-center gap-2">
+        <dt><Icon name="whatsapp" class="w-[1.1em] h-[1.1em] text-maiz" /><span class="sr-only">{t('strip.whatsapp')}</span></dt>
         <dd>
           <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" class="font-bold underline decoration-white/40 underline-offset-4 hover:decoration-white">
             {PHONE_DISPLAY}
