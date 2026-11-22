@@ -54,11 +54,14 @@ Tres lotes con estilos distintos, unificados con una corrección por lote (`GRAD
 
 **Agregar o cambiar una foto:** añadir/editar una línea en `PHOTOS` (`[lote, archivo original, nombre de salida]`), ejecutar `pnpm photos` (o `pnpm photos <filtro>`), e importar `../assets/fotos/<nombre>.webp` en el componente. Para revisar muchas fotos, generar hojas de contacto con miniaturas numeradas antes de elegir.
 
+La granja muestra solo animales y potrero; las construcciones de madera y el patio (si27, si32) son del restaurante y no van en la granja. No se usa bambú: describir el lugar como rústico.
+
 Fotos descartadas a propósito: Makilema en mesa blanca sobre fondo negro (#7–#21, look de estudio), especias en penumbra; Gael con comederos de plástico azul (si14, si15).
 
 ## Tono de los textos
 
 - Directo y breve: frases cortas, sin explicar de más.
+- Granja: un solo bloque (título "Conoce nuestra granja" → fotos → un párrafo sobre la crianza), sin separar por animal.
 - **Respeto por los animales:** hablar de la granja como cuidado y crianza ("con cuidado y respeto"). No relacionar a los animales con el plato ni con la parrilla (nada de "de la granja a la parrilla", "prueba lo que criamos", "razas de carne"). El cierre de la página de la granja lleva al mapa, no a reservar.
 
 ## Contenido y datos del negocio

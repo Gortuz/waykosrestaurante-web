@@ -49,17 +49,14 @@ const PHOTOS = [
   ['propias', 'IMG_20190812_174210 2.JPG', 'hero-potrero-arcoiris'],
   ['propias', 'IMG_20190812_174158.JPG', 'hero-arcoiris-vertical'],
 
-  // Granja (Gael + propias)
+  // Granja (Gael + propias). Solo animales y potrero: las fotos del restaurante no van aquí
   ['propias', 'IMG_0109.HEIC', 'granja-potrero'],
-  ['propias', 'IMG_0116.HEIC', 'granja-arbol'],
   ['gael', 'si11.JPG', 'granja-borrego-negro'],
   ['gael', 'si12.JPG', 'granja-rebano'],
   ['gael', 'si7.JPG', 'granja-corral'],
   ['gael', 'si23.JPG', 'granja-borrego-blanco'],
   ['gael', 'si22.JPG', 'granja-gallo'],
   ['gael', 'si25.JPG', 'granja-gallo-2'],
-  ['gael', 'si27.JPG', 'granja-casa-madera'],
-  ['gael', 'si32.JPG', 'granja-patio'],
 ];
 
 const filter = process.argv[2];

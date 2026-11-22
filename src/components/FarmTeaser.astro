@@ -1,8 +1,8 @@
 ---
 import { Image } from 'astro:assets';
-import potrero from '../assets/fotos/granja-potrero.webp';
 import borregoNegro from '../assets/fotos/granja-borrego-negro.webp';
 import gallo from '../assets/fotos/granja-gallo.webp';
+import rebano from '../assets/fotos/granja-rebano.webp';
 import { useTranslations, routes, type Lang } from '../i18n/utils';
 
 interface Props {
@@ -11,55 +11,44 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+const en = lang === 'en';
+
+const photos = [
+  { src: borregoNegro, alt: en ? 'Black-faced sheep looking at the camera in the barn' : 'Borrego de cara negra mirando a la cámara en el establo' },
+  { src: gallo, alt: en ? 'Free-range rooster on the farm' : 'Gallo criado en libertad en la granja' },
+  { src: rebano, alt: en ? 'Flock of sheep in the barn' : 'Rebaño en el establo' },
+];
 ---
 
-<!-- Adelanto de la granja en la portada; la historia completa vive en /granja -->
-<section id="granja" class="scroll-mt-18 bg-carbon text-[#eee7df]">
-  <Image
-    src={potrero}
-    alt={lang === 'en' ? 'Pasture with eucalyptus trees and mountains in La Esperanza, Ibarra' : 'Potrero con eucaliptos y montañas en La Esperanza, Ibarra'}
-    widths={[1024, 1600, 2400, 3200]}
-    quality={85}
-    sizes="100vw"
-    class="w-full aspect-4/3 sm:aspect-21/9 object-cover"
-    loading="lazy"
-  />
+<!-- Adelanto de la granja en la portada; la página completa vive en /granja -->
+<section id="granja" class="scroll-mt-18 bg-carbon text-[#eee7df] px-4 sm:px-8 py-20 sm:py-28">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="font-serif font-bold text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] max-w-[14ch]">
+      {t('farm.title')}
+    </h2>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-8 py-16 sm:py-24 grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-12 items-center">
-    <div class="lg:col-span-5">
-      <h2 class="font-serif font-bold text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] max-w-[14ch]">
-        {t('farm.title')}
-      </h2>
-      <p class="mt-6 text-lg text-[#d0c6bc] max-w-[46ch]">
-        {t('farm.teaser')}
-      </p>
+    <div class="mt-10 sm:mt-14 grid grid-cols-3 gap-2 sm:gap-6">
+      {photos.map((photo) => (
+        <Image
+          src={photo.src}
+          alt={photo.alt}
+          widths={[400, 700, 1000, 1400]}
+          quality={85}
+          sizes="33vw"
+          class="w-full aspect-3/4 object-cover"
+          loading="lazy"
+        />
+      ))}
+    </div>
+
+    <div class="mt-8 sm:mt-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+      <p class="text-lg text-[#d0c6bc] max-w-[46ch]">{t('farm.teaser')}</p>
       <a
         href={routes.farm[lang]}
-        class="mt-8 inline-flex items-center h-13 px-7 border-2 border-[#eee7df] font-bold hover:bg-[#eee7df] hover:text-carbon transition-colors"
+        class="shrink-0 self-start sm:self-auto inline-flex items-center h-13 px-7 border-2 border-[#eee7df] font-bold hover:bg-[#eee7df] hover:text-carbon transition-colors"
       >
         {t('farm.teaserCta')}
       </a>
-    </div>
-
-    <div class="lg:col-span-7 grid grid-cols-2 gap-3 sm:gap-6">
-      <Image
-        src={borregoNegro}
-        alt={lang === 'en' ? 'Black-faced sheep looking at the camera in the barn' : 'Borrego de cara negra mirando a la cámara en el establo'}
-        widths={[600, 900, 1290, 1600]}
-        quality={85}
-        sizes="(min-width: 1024px) 28vw, 50vw"
-        class="w-full aspect-3/4 object-cover"
-        loading="lazy"
-      />
-      <Image
-        src={gallo}
-        alt={lang === 'en' ? 'Free-range rooster on the farm' : 'Gallo criado en libertad en la granja'}
-        widths={[600, 900, 1290, 1600]}
-        quality={85}
-        sizes="(min-width: 1024px) 28vw, 50vw"
-        class="w-full aspect-3/4 object-cover mt-10 sm:mt-16"
-        loading="lazy"
-      />
     </div>
   </div>
 </section>
