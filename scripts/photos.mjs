@@ -38,12 +38,15 @@ const PHOTOS = [
   ['makilema', 'lasaña-1.jpg', 'plato-lasana'],
   ['makilema', 'pizza-1.jpg', 'plato-pizza'],
   ['makilema', 'equipo.jpg', 'equipo'],
+  ['makilema', '_1399722.jpg', 'equipo-salon'],
+  ['makilema', '_1399725.jpg', 'equipo-mesera'],
+  ['makilema', '_1399726.jpg', 'equipo-plato'],
 
   // Hero: escritorio (horizontal) y móvil (vertical)
   ['propias', 'IMG_20201211_160451.JPG', 'hero-techo-arcoiris'],
   ['gael', 'si27.JPG', 'hero-casa-madera'],
   ['makilema', 'cordero-1.jpg', 'hero-cordero'],
-  ['makilema', '_1399726.jpg', 'hero-plato-campo'],
+  ['makilema', 'bolones-vertical.jpg', 'hero-bolones'],
   ['propias', 'IMG_20190812_174210 2.JPG', 'hero-potrero-arcoiris'],
   ['propias', 'IMG_20190812_174158.JPG', 'hero-arcoiris-vertical'],
 

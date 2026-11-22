@@ -53,7 +53,7 @@ Antes de dar un cambio por terminado: `pnpm check` y `pnpm build` sin errores, y
 - **Elemento distintivo:** la franja roja con zigzag tejido (`.faja-trim`) bajo el hero, sobre el pie de página y en el cierre de la página de la granja.
 - **Platos** con el formato de la carta impresa: nombre y precio sobre una línea roja (`border-rule-accent`).
 - **Evitar:** etiquetas en mayúsculas sobre cada título, cifras de relleno, flechas en los botones, animaciones en cada sección. Títulos en mayúscula inicial (sentence case). Botones que dicen exactamente lo que pasa ("Enviar reserva por WhatsApp").
-- **Hero:** 3 fotos (escritorio: techo con arcoíris, cordero, potrero con arcoíris; móvil: arcoíris vertical, plato frente al campo, casa de madera). Sin animales bajo el lema ni fotos con cucharas o personas sosteniendo platos (decisión del usuario). Se alternan con fundido cada 7 s (horizontal en escritorio, vertical en móvil, vía `<picture>`), con botón de pausa; con "reducir movimiento" se queda fija. Foto y franja comparten la primera pantalla (`100svh`).
+- **Hero:** 3 fotos (escritorio: techo con arcoíris, cordero, potrero con arcoíris; móvil: arcoíris vertical, bolones, casa de madera). Sin animales bajo el lema ni fotos con cucharas o personas sosteniendo platos (decisión del usuario): las fotos con personas van en Equipo. Se alternan con fundido cada 7 s (horizontal en escritorio, vertical en móvil, vía `<picture>`), con botón de pausa; con "reducir movimiento" se queda fija. Foto y franja comparten la primera pantalla (`100svh`).
 - Navegación de escritorio desde `lg`; debajo, menú hamburguesa.
 
 ## Fotos
@@ -75,7 +75,7 @@ Fotos descartadas a propósito: Makilema en mesa blanca sobre fondo negro (#7–
 ## Tono de los textos
 
 - Directo y breve: frases cortas, sin explicar de más.
-- Granja: un solo bloque (título "Conoce nuestra granja" → fotos → tres pilares: Granja, Agricultura circular, Huerta), sin separar por animal. Sin números (no son una secuencia). Equipo: solo título y foto.
+- Granja: un solo bloque (título "Conoce nuestra granja" → fotos → tres pilares: Granja, Agricultura circular, Huerta), sin separar por animal. Sin números (no son una secuencia). Equipo: título, foto ancha del equipo y tres verticales con personas (misma composición que la granja).
 - **Nunca relacionar a los animales con la mesa o el plato** (nada que aluda al sacrificio): ni "de la granja a la parrilla", ni "lo que criamos llega a la cocina", ni "prueba lo que criamos", ni "razas de carne", tampoco en meta descripciones. El ciclo de la granja termina en "el pasto alimenta a los borregos". "De la huerta a la mesa" sí se podrá usar cuando haya fotos de la huerta. El cierre de la página de la granja lleva al mapa, no a reservar.
 - **Registro serio y directo:** frases cortas y afirmativas, una idea por frase, hechos en vez de adjetivos, sin conectores de relleno ("además", "todo", "es decir"), sin exclamaciones ni "experiencia única". Hablarle al cliente, no describir procesos como en una presentación.
 - **Lema:** "Una manera diferente de comer rico" (frase de un cliente; usarla tal cual, es el título del hero). Es la única frase con tono de eslogan.
