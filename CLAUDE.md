@@ -9,7 +9,7 @@ Sitio web de Wayko's, restaurante rural en La Esperanza, Ibarra (Imbabura, Ecuad
 **Origen y propuesta:** nace del deseo de ofrecer una gastronomía diferente y variada en el sector, con énfasis en la calidad de los procesos y un balance entre salud y buen sabor.
 
 **La granja es parte del restaurante** (mismo terreno). Se crían borregos, gallinas y cuyes, y en temporada se cosecha de una huerta. Es una granja integral, donde todo cumple un ciclo: el abono vuelve a la tierra, la tierra da el pasto, el pasto alimenta a los borregos, y lo que se cría y cosecha llega a la cocina. Es su forma de respetar la naturaleza.
-- No se usan productos químicos en la granja; se busca acercarse lo más posible a lo orgánico. **No afirmar "orgánico certificado"**: decir "sin productos químicos".
+- No se usan productos químicos en la granja; se busca acercarse lo más posible a lo orgánico. **No usar "orgánico"** (en Ecuador requiere certificación de Agrocalidad): decir "sin químicos". No prometer absolutos como "eliminar desperdicios"; usar "aprovechar al máximo cada recurso".
 - Borregos: **cruces de Dorper y Poll Dorset**, criados **estabulados** (en establo). No decir "de pastoreo" ni "pasture-raised".
 - Gallinas: **en libertad**.
 - Además compran **productos locales y de temporada**, que dan variedad a las ensaladas.
@@ -75,7 +75,7 @@ Fotos descartadas a propósito: Makilema en mesa blanca sobre fondo negro (#7–
 ## Tono de los textos
 
 - Directo y breve: frases cortas, sin explicar de más.
-- Granja: un solo bloque (título "Conoce nuestra granja" → fotos → tres frases cortas), sin separar por animal. Equipo: solo título y foto.
+- Granja: un solo bloque (título "Conoce nuestra granja" → fotos → tres pilares: Granja, Agricultura circular, Huerta), sin separar por animal. Sin números (no son una secuencia). Equipo: solo título y foto.
 - **Nunca relacionar a los animales con la mesa o el plato** (nada que aluda al sacrificio): ni "de la granja a la parrilla", ni "lo que criamos llega a la cocina", ni "prueba lo que criamos", ni "razas de carne", tampoco en meta descripciones. El ciclo de la granja termina en "el pasto alimenta a los borregos". "De la huerta a la mesa" sí se podrá usar cuando haya fotos de la huerta. El cierre de la página de la granja lleva al mapa, no a reservar.
 - **Registro serio y directo:** frases cortas y afirmativas, una idea por frase, hechos en vez de adjetivos, sin conectores de relleno ("además", "todo", "es decir"), sin exclamaciones ni "experiencia única". Hablarle al cliente, no describir procesos como en una presentación.
 - **Lema:** "Una manera diferente de comer rico" (frase de un cliente; usarla tal cual, es el título del hero). Es la única frase con tono de eslogan.
