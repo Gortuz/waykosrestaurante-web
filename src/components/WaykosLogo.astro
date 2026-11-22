@@ -1,16 +1,20 @@
 ---
-// WaykosLogo.astro
+import { useTranslations, type Lang } from '../i18n/utils';
+
 interface Props {
+  lang: Lang;
   class?: string;
 }
 
-const { class: className = "h-10 sm:h-12 md:h-14 w-auto" } = Astro.props;
+const { lang, class: className = "h-10 sm:h-12 md:h-14 w-auto" } = Astro.props;
+const t = useTranslations(lang);
+const homeUrl = lang === 'en' ? '/en/' : '/';
 ---
 
-<a href="/" class="inline-flex items-center group shrink-0" aria-label="Wayko's Restaurante Rural">
+<a href={homeUrl} class="inline-flex items-center group shrink-0" aria-label={t('nav.home')}>
   <img
     src="/waykos-horizontal.svg"
-    alt="Wayko's Restaurante Rural en La Esperanza, Ibarra, Ecuador"
+    alt=""
     class={`waykos-logo-svg ${className} object-contain transition-all duration-200 group-hover:opacity-90`}
     loading="eager"
     fetchpriority="high"

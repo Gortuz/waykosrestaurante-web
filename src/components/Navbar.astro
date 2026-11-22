@@ -17,7 +17,7 @@ const prefix = lang === 'en' ? '/en' : '';
   <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between gap-2">
     <!-- Brand Logo -->
     <div class="flex items-center shrink-0">
-      <WaykosLogo />
+      <WaykosLogo lang={lang} />
     </div>
 
     <!-- Right Side: Desktop Nav + Controls (On Mobile: Just Controls & Hamburger) -->
@@ -73,7 +73,7 @@ const prefix = lang === 'en' ? '/en' : '';
         <LanguagePicker currentLang={lang} />
 
         <!-- Dark/Light Theme Switcher (Visible on both mobile & desktop top bar) -->
-        <ThemeToggle />
+        <ThemeToggle label={t('nav.themeToggle')} />
 
         <!-- Mobile Hamburger Button (Only visible on mobile screens) -->
         <button
@@ -82,7 +82,7 @@ const prefix = lang === 'en' ? '/en' : '';
           class="inline-flex md:hidden items-center justify-center w-10 h-10 rounded-full border border-(--border-subtle) bg-(--bg-secondary) text-(--text-body) hover:text-brand dark:hover:text-white focus:outline-none transition-colors cursor-pointer shrink-0"
           aria-controls="mobile-menu"
           aria-expanded="false"
-          aria-label="Abrir menú de navegación"
+          aria-label={t('nav.openMenu')}
         >
           <!-- Hamburger Bars Icon (Visible when closed) -->
           <svg id="hamburger-icon" class="w-5 h-5 block transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">

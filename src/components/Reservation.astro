@@ -7,10 +7,24 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '593969143757';
+import { WHATSAPP_NUMBER, OPENING_HOURS } from '../data/site';
+
+const guestKeys = ['booking.guest1', 'booking.guest2', 'booking.guest3', 'booking.guest4', 'booking.guest5', 'booking.guest6', 'booking.guest7', 'booking.guest8Plus'] as const;
+
+// Etiquetas del mensaje de WhatsApp en el idioma de la página
+const messageLabels = {
+  intro: t('booking.msgIntro'),
+  name: t('booking.msgName'),
+  phone: t('booking.msgPhone'),
+  date: t('booking.msgDate'),
+  time: t('booking.msgTime'),
+  guests: t('booking.msgGuests'),
+  email: t('booking.msgEmail'),
+  outro: t('booking.msgOutro'),
+};
 ---
 
-<section id="reservas" class="relative min-h-[calc(100vh-5rem)] scroll-mt-20 py-16 sm:py-20 lg:py-10 px-6 sm:px-8 flex flex-col justify-center overflow-hidden bg-[#ECE9E2] dark:bg-(--bg-secondary) transition-colors duration-200">
+<section id="reservas" class="relative min-h-[calc(100svh-5rem)] scroll-mt-20 py-16 sm:py-20 lg:py-10 px-6 sm:px-8 flex flex-col justify-center overflow-hidden bg-[#ECE9E2] dark:bg-(--bg-secondary) transition-colors duration-200">
   <!-- Andean Isotipo Pattern Background (From official Wayko's emblem / favicon.svg) -->
   <div class="absolute inset-0 pointer-events-none overflow-hidden select-none">
     <svg class="w-full h-full text-white/85 dark:text-white/4" xmlns="http://www.w3.org/2000/svg">
@@ -63,7 +77,12 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '593969143757';
 
     <!-- Centered Form Card from Desktop - 3.png -->
     <div class="bg-(--bg-primary) dark:bg-(--bg-primary) rounded-3xl p-6 sm:p-10 lg:p-8 shadow-xl border border-(--border-subtle)">
-      <form id="reservation-form" data-whatsapp={whatsappNumber} class="space-y-5 lg:space-y-4">
+      <form
+        id="reservation-form"
+        data-whatsapp={WHATSAPP_NUMBER}
+        data-open-days={JSON.stringify(OPENING_HOURS.dayNumbers)}
+        data-labels={JSON.stringify(messageLabels)}
+        class="space-y-5 lg:space-y-4">
         <!-- Row 1: Name & Phone -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
@@ -120,6 +139,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '593969143757';
               id="booking-date"
               name="date"
               required
+              aria-describedby="booking-date-hint"
               class="w-full h-13 px-4 rounded-xl border border-(--border-subtle) bg-(--bg-secondary) text-(--text-body) text-base focus:outline-none focus:ring-2 focus:ring-brand transition-all"
             />
           </div>
@@ -134,6 +154,9 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '593969143757';
               name="time"
               required
               value="13:00"
+              min={OPENING_HOURS.opens}
+              max={OPENING_HOURS.lastBooking}
+              step="900"
               class="w-full h-13 px-4 rounded-xl border border-(--border-subtle) bg-(--bg-secondary) text-(--text-body) text-base focus:outline-none focus:ring-2 focus:ring-brand transition-all"
             />
           </div>
@@ -149,11 +172,9 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '593969143757';
                 required
                 class="w-full h-13 px-4 pr-10 rounded-xl border border-(--border-subtle) bg-(--bg-secondary) text-(--text-body) text-base focus:outline-none focus:ring-2 focus:ring-brand appearance-none cursor-pointer transition-all"
               >
-                <option value={t('booking.guest1')}>{t('booking.guest1')}</option>
-                <option value={t('booking.guest2')}>{t('booking.guest2')}</option>
-                <option value={t('booking.guest3')}>{t('booking.guest3')}</option>
-                <option value={t('booking.guest4')} selected>{t('booking.guest4')}</option>
-                <option value={t('booking.guest8Plus')}>{t('booking.guest8Plus')}</option>
+                {guestKeys.map((key) => (
+                  <option value={t(key)} selected={key === 'booking.guest4'}>{t(key)}</option>
+                ))}
               </select>
               <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3.5 text-(--text-muted)">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -163,6 +184,11 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '593969143757';
             </div>
           </div>
         </div>
+
+        <!-- Aviso cuando la fecha elegida cae en un día que normalmente no abrimos -->
+        <p id="booking-date-hint" class="hidden text-sm text-brand font-medium" role="status">
+          {t('booking.closedDayHint')}
+        </p>
 
         <!-- Microcopy notice -->
         <p class="text-center text-sm text-(--text-muted) font-medium pt-2">
@@ -186,15 +212,33 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '593969143757';
 <script is:inline>
   const form = document.getElementById('reservation-form');
   if (form) {
-    // Set default date to today or upcoming weekend
     const dateInput = document.getElementById('booking-date');
-    if (dateInput && !dateInput.value) {
+    const dateHint = document.getElementById('booking-date-hint');
+    const openDays = JSON.parse(form.dataset.openDays || '[]');
+    const labels = JSON.parse(form.dataset.labels || '{}');
+
+    const toInputValue = (d) =>
+      `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+
+    // Por defecto: hoy si abrimos, si no el próximo día de atención
+    if (dateInput) {
       const today = new Date();
-      const yyyy = today.getFullYear();
-      const mm = String(today.getMonth() + 1).padStart(2, '0');
-      const dd = String(today.getDate()).padStart(2, '0');
-      dateInput.value = `${yyyy}-${mm}-${dd}`;
-      dateInput.min = `${yyyy}-${mm}-${dd}`;
+      dateInput.min = toInputValue(today);
+      if (!dateInput.value) {
+        const next = new Date(today);
+        while (!openDays.includes(next.getDay())) next.setDate(next.getDate() + 1);
+        dateInput.value = toInputValue(next);
+      }
+
+      // No bloqueamos otros días (feriados), solo avisamos
+      const updateHint = () => {
+        if (!dateHint || !dateInput.value) return;
+        const [y, m, d] = dateInput.value.split('-').map(Number);
+        const isOpenDay = openDays.includes(new Date(y, m - 1, d).getDay());
+        dateHint.classList.toggle('hidden', isOpenDay);
+      };
+      dateInput.addEventListener('change', updateHint);
+      updateHint();
     }
 
     form.addEventListener('submit', (e) => {
@@ -206,20 +250,19 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '593969143757';
       const time = document.getElementById('booking-time').value;
       const guests = document.getElementById('booking-guests').value;
 
-      let message = `¡Hola Wayko's! Deseo reservar una mesa:\n\n` +
-        `• Nombre: ${name}\n` +
-        `• Teléfono: ${phone}\n` +
-        `• Fecha: ${date}\n` +
-        `• Hora: ${time}\n` +
-        `• Personas: ${guests}\n`;
+      let message = `${labels.intro}\n\n` +
+        `• ${labels.name}: ${name}\n` +
+        `• ${labels.phone}: ${phone}\n` +
+        `• ${labels.date}: ${date}\n` +
+        `• ${labels.time}: ${time}\n` +
+        `• ${labels.guests}: ${guests}\n`;
 
       if (email) {
-        message += `• Email: ${email}\n`;
+        message += `• ${labels.email}: ${email}\n`;
       }
-      message += `\n¿Tienen disponibilidad para confirmar mi lugar? ¡Muchas gracias!`;
+      message += `\n${labels.outro}`;
 
-      const whatsappNumber = form.dataset.whatsapp || '593969143757';
-      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+      const whatsappUrl = `https://wa.me/${form.dataset.whatsapp}?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank');
     });
   }

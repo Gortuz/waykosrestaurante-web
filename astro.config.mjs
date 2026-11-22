@@ -1,18 +1,42 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
-import cloudflare from '@astrojs/cloudflare';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'server',
-  adapter: cloudflare({
-    imageService: 'compile',
-  }),
+  site: 'https://waykosrestaurante.com',
+  output: 'static',
+  integrations: [
+    sitemap({
+      i18n: {
+        defaultLocale: 'es',
+        locales: { es: 'es-EC', en: 'en-US' },
+      },
+    }),
+  ],
   vite: {
     // @ts-ignore
     plugins: [tailwindcss()],
   },
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: 'Montserrat',
+      cssVariable: '--font-montserrat',
+      weights: ['300 700'],
+      styles: ['normal'],
+      fallbacks: ['sans-serif'],
+    },
+    {
+      provider: fontProviders.google(),
+      name: 'Playfair Display',
+      cssVariable: '--font-playfair',
+      weights: ['500 700'],
+      styles: ['normal'],
+      fallbacks: ['serif'],
+    },
+  ],
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'en'],

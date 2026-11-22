@@ -1,10 +1,14 @@
 ---
-// ThemeToggle.astro
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
 ---
 
 <button
   type="button"
-  aria-label="Alternar tema claro y oscuro"
+  aria-label={label}
   class="theme-toggle-btn relative inline-flex items-center justify-center w-10 h-10 rounded-full border border-(--border-subtle) bg-(--bg-secondary) hover:bg-(--bg-tertiary) transition-colors duration-200 text-(--text-body) cursor-pointer shrink-0"
 >
   <!-- Sun Icon (visible in dark mode) -->

@@ -5,6 +5,7 @@ import maduroImg from '../assets/restaurante/plato-maduro-queso.webp';
 import lasanaImg from '../assets/restaurante/plato-lasana.webp';
 import pizzaImg from '../assets/restaurante/plato-pizza.webp';
 import { useTranslations, type Lang } from '../i18n/utils';
+import { MENU_PDF_PATH } from '../data/site';
 
 interface Props {
   lang: Lang;
@@ -53,7 +54,7 @@ const specialties = [
 ];
 ---
 
-<section id="menu" class="relative min-h-[calc(100vh-5rem)] scroll-mt-20 py-16 sm:py-20 lg:py-10 px-6 sm:px-8 flex flex-col justify-center overflow-hidden bg-(--bg-primary) transition-colors duration-200">
+<section id="menu" class="relative min-h-[calc(100svh-5rem)] scroll-mt-20 py-16 sm:py-20 lg:py-10 px-6 sm:px-8 flex flex-col justify-center overflow-hidden bg-(--bg-primary) transition-colors duration-200">
   <!-- Subtle Background Watermark Emblem -->
   <div class="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden opacity-[0.03] dark:opacity-[0.05]">
     <svg class="w-200 h-200 text-brand dark:text-white" viewBox="0 0 1200 499.85" fill="currentColor">
@@ -87,6 +88,8 @@ const specialties = [
             <Image
               src={item.image}
               alt={item.alt}
+              widths={[480, 800, 1200]}
+              sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
               class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
               loading="lazy"
             />
@@ -113,7 +116,7 @@ const specialties = [
     <!-- Action Button from Desktop - 2.png -->
     <div class="mt-8 lg:mt-10 text-center">
       <a
-        href="/menu.pdf"
+        href={MENU_PDF_PATH}
         target="_blank"
         rel="noopener noreferrer"
         class="inline-flex items-center justify-center gap-2.5 px-10 py-4 rounded-xl bg-brand hover:bg-brand-hover text-white font-medium text-base shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5 cursor-pointer"
