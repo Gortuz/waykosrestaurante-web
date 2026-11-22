@@ -66,7 +66,7 @@ Tres lotes con estilos distintos, unificados con una corrección por lote (`GRAD
 - `propias` — paisajes de celular (incluye HEIC; se convierten con `sips`) → saturación 0.92, un poco de contraste.
 - Regla: no levantar los negros con offsets positivos en `linear`; lava la foto.
 
-**Agregar o cambiar una foto:** añadir/editar una línea en `PHOTOS` (`[lote, archivo original, nombre de salida]`), ejecutar `pnpm photos` (o `pnpm photos <filtro>`), e importar `../assets/fotos/<nombre>.webp` en el componente. Para revisar muchas fotos, generar hojas de contacto con miniaturas numeradas antes de elegir.
+**Agregar o cambiar una foto:** añadir/editar una línea en `PHOTOS` (`[lote, archivo original, nombre de salida]`), ejecutar `pnpm photos` (o `pnpm photos <filtro>`), e importar `../assets/fotos/<nombre>.webp` en el componente. **Orden importante:** generar la foto antes de importarla; si `pnpm dev` está corriendo y ve el import primero, guarda un error `ImageNotFound` en caché (se arregla reiniciando el servidor o borrando `node_modules/.vite`). Para revisar muchas fotos, generar hojas de contacto con miniaturas numeradas antes de elegir.
 
 La granja muestra solo animales y potrero; las construcciones de madera y el patio (si27, si32) son del restaurante y no van en la granja. No se usa bambú: describir el lugar como rústico.
 
