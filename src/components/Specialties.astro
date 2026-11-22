@@ -68,8 +68,8 @@ const [featured, ...others] = specialties;
     </div>
 
     <div class="mt-12 sm:mt-16 grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-10">
-      <!-- Plato principal de la casa -->
-      <figure class="lg:col-span-7">
+      <!-- Plato principal de la casa (solo escritorio; en móvil cada plato lleva su foto) -->
+      <figure class="hidden lg:block lg:col-span-7">
         <Image
           src={featured.image}
           alt={featured.alt}
@@ -81,10 +81,18 @@ const [featured, ...others] = specialties;
       </figure>
 
       <!-- Lista con el formato de la carta impresa: nombre y precio sobre una línea roja -->
-      <ul class="lg:col-span-5 flex flex-col">
+      <ul class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12 lg:flex lg:flex-col lg:gap-0">
         {specialties.map((item) => (
-          <li class="py-5 first:pt-0">
-            <div class="flex items-baseline justify-between gap-4 pb-2 border-b-2 border-accent">
+          <li class="lg:py-5 lg:first:pt-0">
+            <Image
+              src={item.image}
+              alt={item.alt}
+              widths={[480, 800, 1200]}
+              sizes="(min-width: 640px) 50vw, 100vw"
+              class="lg:hidden w-full aspect-4/3 object-cover mb-4"
+              loading="lazy"
+            />
+            <div class="flex items-baseline justify-between gap-4 pb-2 border-b-2 border-rule-accent">
               <h3 class="font-serif text-xl sm:text-2xl font-semibold leading-tight text-ink">{item.title}</h3>
               <span class="font-serif text-xl sm:text-2xl font-semibold text-accent-text whitespace-nowrap tabular-nums">
                 {item.price}
@@ -96,19 +104,19 @@ const [featured, ...others] = specialties;
       </ul>
     </div>
 
-    <!-- Fotos de los demás platos -->
-    <div class="mt-12 grid grid-cols-3 gap-2 sm:gap-6">
+    <!-- Fotos de los demás platos (solo escritorio) -->
+    <div class="hidden lg:grid mt-12 grid-cols-3 gap-6">
       {others.map((item) => (
         <figure>
           <Image
             src={item.image}
             alt={item.alt}
             widths={[480, 800, 1200]}
-            sizes="33vw"
+            sizes="30vw"
             class="w-full aspect-square object-cover"
             loading="lazy"
           />
-          <figcaption class="mt-2 text-xs sm:text-sm text-ink-muted">{item.title}</figcaption>
+          <figcaption class="mt-2 text-sm text-ink-muted">{item.title}</figcaption>
         </figure>
       ))}
     </div>

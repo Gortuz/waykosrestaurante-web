@@ -13,28 +13,29 @@ const t = useTranslations(lang);
 const prefix = lang === 'en' ? '/en' : '';
 ---
 
-<section id="hero" class="relative">
-  <div class="relative h-[calc(100svh-4.5rem)] min-h-[32rem] max-h-[56rem] overflow-hidden bg-carbon">
+<!-- Foto y franja comparten la primera pantalla: la franja siempre queda visible -->
+<section id="hero" class="relative flex flex-col h-[calc(100svh-4.5rem)] min-h-[34rem] max-h-[60rem]">
+  <div class="relative flex-1 min-h-0 overflow-hidden bg-carbon">
     <Image
       src={heroImg}
       alt={lang === 'en' ? "Lamb steak from the grill at Wayko's, La Esperanza, Ibarra" : "Steak de cordero a la parrilla en Wayko's, La Esperanza, Ibarra"}
       widths={[640, 1024, 1600, 2400]}
       sizes="100vw"
-      class="hero-image absolute inset-0 w-full h-full object-cover object-[center_60%]"
+      class="hero-image absolute inset-0 w-full h-full object-cover object-[60%_75%] sm:object-[center_60%]"
       loading="eager"
       fetchpriority="high"
     />
     <!-- Solo oscurece la parte inferior, donde va el texto -->
     <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" aria-hidden="true"></div>
 
-    <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-8 flex flex-col justify-end pb-12 sm:pb-16">
+    <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-8 flex flex-col justify-end pb-8 sm:pb-16">
       <h1 class="font-serif text-white font-bold leading-[0.95] tracking-[-0.01em] text-[clamp(2.75rem,7.5vw,6.25rem)] max-w-[12ch]">
         {t('hero.title')}
       </h1>
-      <p class="mt-5 max-w-[46ch] text-lg sm:text-xl text-white/85 leading-snug">
+      <p class="mt-4 sm:mt-5 max-w-[46ch] text-lg sm:text-xl text-white/90 leading-snug">
         {t('hero.subtitle')}
       </p>
-      <div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
+      <div class="mt-6 sm:mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
         <a
           href={`${prefix}#reservas`}
           class="inline-flex items-center h-13 px-7 bg-poncho hover:bg-[#6e040b] text-white font-bold text-base transition-colors"
@@ -52,10 +53,10 @@ const prefix = lang === 'en' ? '/en' : '';
   </div>
 
   <!-- Franja tejida: datos prácticos sobre el rojo poncho -->
-  <div class="bg-poncho text-white">
+  <div class="shrink-0 bg-poncho text-white">
     <div class="faja-trim" aria-hidden="true"></div>
-    <dl class="max-w-7xl mx-auto px-4 sm:px-8 py-4 grid grid-cols-1 md:grid-cols-[auto_auto_auto] md:justify-between gap-x-10 gap-y-1.5 text-[0.95rem]">
-      <div class="flex gap-2">
+    <dl class="max-w-7xl mx-auto px-4 sm:px-8 py-3 sm:py-4 grid grid-cols-2 md:grid-cols-[auto_auto_auto] md:justify-between gap-x-6 gap-y-1 text-[0.9rem] sm:text-[0.95rem] leading-snug">
+      <div class="col-span-2 md:col-span-1 flex gap-2">
         <dt class="sr-only">{t('about.hoursTitle')}</dt>
         <dd>{t('strip.hours')}</dd>
       </div>
