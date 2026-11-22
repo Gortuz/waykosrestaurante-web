@@ -38,7 +38,7 @@ const labelClass = 'block text-sm font-medium text-ink mb-1.5';
       </p>
       <p class="mt-8 pt-6 border-t border-rule text-ink-muted max-w-[40ch]">
         {t('booking.direct')}
-        <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" class="font-bold text-accent-text underline underline-offset-4 decoration-2 whitespace-nowrap">{PHONE_DISPLAY}</a>.
+        <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" class="font-bold text-accent-text underline underline-offset-4 decoration-2 whitespace-nowrap">{PHONE_DISPLAY}</a>
       </p>
     </div>
 
@@ -103,14 +103,13 @@ const labelClass = 'block text-sm font-medium text-ink mb-1.5';
         {t('booking.closedDayHint')}
       </p>
 
-      <div class="sm:col-span-6 pt-2 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+      <div class="sm:col-span-6 pt-2">
         <button
           type="submit"
           class="inline-flex items-center justify-center h-13 px-8 bg-accent hover:bg-accent-hover text-white font-bold text-base transition-colors cursor-pointer"
         >
           {t('booking.submit')}
         </button>
-        <p class="text-sm text-ink-muted">{t('booking.helper')}</p>
       </div>
     </form>
   </div>
