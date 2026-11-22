@@ -133,16 +133,25 @@ const restaurantSchema = {
     <Font cssVariable="--font-alegreya-sans" preload />
     <Font cssVariable="--font-alegreya" preload />
 
-    <!-- Anti-FOUC Theme Script: Runs before render to prevent flash of wrong theme -->
+    <!--
+      Tema antes de pintar (evita el parpadeo). Prioridad:
+      1. Elección manual del visitante, válida por 12 horas.
+      2. Modo oscuro del sistema.
+      3. Horario: oscuro de 18:30 a 6:00, hora del dispositivo.
+    -->
     <script is:inline>
       (function () {
-        const storedTheme = localStorage.getItem('waykos-theme');
-        const userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (storedTheme === 'dark' || (!storedTheme && userPrefersDark)) {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
-        }
+        let manual = null;
+        try {
+          const saved = JSON.parse(localStorage.getItem('waykos-theme') || 'null');
+          if (saved && Date.now() - saved.at < 12 * 60 * 60 * 1000) manual = saved.theme;
+        } catch (e) {}
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const now = new Date();
+        const minutes = now.getHours() * 60 + now.getMinutes();
+        const night = minutes >= 18 * 60 + 30 || minutes < 6 * 60;
+        const dark = manual ? manual === 'dark' : systemDark || night;
+        document.documentElement.classList.toggle('dark', dark);
       })();
     </script>
   </head>

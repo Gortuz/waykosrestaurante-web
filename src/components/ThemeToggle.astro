@@ -30,7 +30,10 @@ const { label } = Astro.props;
       const btn = e.target.closest('.theme-toggle-btn');
       if (!btn) return;
       const isDark = document.documentElement.classList.toggle('dark');
-      localStorage.setItem('waykos-theme', isDark ? 'dark' : 'light');
+      // La elección manual dura 12 horas; luego vuelve a mandar el horario (ver Layout.astro)
+      try {
+        localStorage.setItem('waykos-theme', JSON.stringify({ theme: isDark ? 'dark' : 'light', at: Date.now() }));
+      } catch (e) {}
     });
   }
 </script>
