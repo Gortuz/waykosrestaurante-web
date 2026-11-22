@@ -18,7 +18,8 @@ const t = useTranslations(lang);
   <Image
     src={potrero}
     alt={lang === 'en' ? 'Pasture with eucalyptus trees and mountains in La Esperanza, Ibarra' : 'Potrero con eucaliptos y montañas en La Esperanza, Ibarra'}
-    widths={[640, 1024, 1600, 2400]}
+    widths={[1024, 1600, 2400, 3200]}
+    quality={85}
     sizes="100vw"
     class="w-full aspect-4/3 sm:aspect-21/9 object-cover"
     loading="lazy"
@@ -44,7 +45,8 @@ const t = useTranslations(lang);
       <Image
         src={borregoNegro}
         alt={lang === 'en' ? 'Black-faced sheep looking at the camera in the barn' : 'Borrego de cara negra mirando a la cámara en el establo'}
-        widths={[400, 700, 1000]}
+        widths={[600, 900, 1290, 1600]}
+        quality={85}
         sizes="(min-width: 1024px) 28vw, 50vw"
         class="w-full aspect-3/4 object-cover"
         loading="lazy"
@@ -52,7 +54,8 @@ const t = useTranslations(lang);
       <Image
         src={gallo}
         alt={lang === 'en' ? 'Free-range rooster on the farm' : 'Gallo criado en libertad en la granja'}
-        widths={[400, 700, 1000]}
+        widths={[600, 900, 1290, 1600]}
+        quality={85}
         sizes="(min-width: 1024px) 28vw, 50vw"
         class="w-full aspect-3/4 object-cover mt-10 sm:mt-16"
         loading="lazy"

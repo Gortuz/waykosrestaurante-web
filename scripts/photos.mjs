@@ -15,17 +15,19 @@ import { join, extname } from 'node:path';
 
 const SOURCE_DIR = 'waykos-design';
 const OUT_DIR = 'src/assets/fotos';
-const MAX_SIZE = 2400;
-const QUALITY = 80;
+// Fuente casi sin pérdida: Astro vuelve a comprimir al generar los tamaños responsivos
+const MAX_SIZE = 3200;
+const QUALITY = 90;
 
-// Corrección por lote (aprobada en noviembre 2026)
+// Corrección por lote (v2, noviembre 2026: más viva que la v1, que se veía apagada).
+// Regla: no levantar los negros con offsets positivos; eso lava la foto.
 const GRADES = {
-  // Gael: subexpuestas y apagadas -> más luz y un toque cálido
-  gael: (img) => img.linear([1.22, 1.18, 1.12], [6, 6, 4]).modulate({ saturation: 1.05 }),
-  // Makilema: muy saturadas y con negros aplastados -> menos color, negros levantados
-  makilema: (img) => img.modulate({ saturation: 0.72 }).linear([0.92, 0.9, 0.88], [16, 14, 12]),
-  // Propias (celular, HDR): cielos y verdes intensos -> más contenidas
-  propias: (img) => img.modulate({ saturation: 0.78 }).linear([0.95, 0.94, 0.9], [8, 8, 8]),
+  // Gael: subexpuestas y apagadas -> más luz, contraste y color, toque cálido
+  gael: (img) => img.modulate({ brightness: 1.14, saturation: 1.18 }).linear([1.1, 1.07, 1.02], [-10, -9, -8]),
+  // Makilema: muy saturadas -> bajar color sin perder contraste
+  makilema: (img) => img.modulate({ saturation: 0.86 }),
+  // Propias (celular, HDR): cielos y verdes intensos -> apenas contenidas
+  propias: (img) => img.modulate({ saturation: 0.92 }).linear(1.04, -4),
 };
 
 // [lote, archivo original (dentro de waykos-design/fotos-<lote>), nombre de salida]

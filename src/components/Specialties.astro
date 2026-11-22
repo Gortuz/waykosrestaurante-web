@@ -73,7 +73,8 @@ const [featured, ...others] = specialties;
         <Image
           src={featured.image}
           alt={featured.alt}
-          widths={[640, 1024, 1600]}
+          widths={[800, 1200, 1800, 2400]}
+          quality={85}
           sizes="(min-width: 1024px) 55vw, 100vw"
           class="w-full aspect-4/3 object-cover"
           loading="lazy"
@@ -87,7 +88,8 @@ const [featured, ...others] = specialties;
             <Image
               src={item.image}
               alt={item.alt}
-              widths={[480, 800, 1200]}
+              widths={[640, 960, 1290, 1600]}
+              quality={85}
               sizes="(min-width: 640px) 50vw, 100vw"
               class="lg:hidden w-full aspect-4/3 object-cover mb-4"
               loading="lazy"
@@ -111,7 +113,8 @@ const [featured, ...others] = specialties;
           <Image
             src={item.image}
             alt={item.alt}
-            widths={[480, 800, 1200]}
+            widths={[640, 960, 1290, 1600]}
+            quality={85}
             sizes="30vw"
             class="w-full aspect-square object-cover"
             loading="lazy"

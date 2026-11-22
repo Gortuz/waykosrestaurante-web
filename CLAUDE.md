@@ -44,16 +44,22 @@ Antes de dar un cambio por terminado: `pnpm check` y `pnpm build` sin errores, y
 
 ## Fotos
 
-Originales en `waykos-design/fotos-<lote>/`, salida en `src/assets/fotos/<nombre>.webp` (máx. 2400 px, WebP q80). Astro genera los tamaños responsivos en el build.
+Originales en `waykos-design/fotos-<lote>/`, salida en `src/assets/fotos/<nombre>.webp` (máx. 3200 px, WebP q90 casi sin pérdida). Astro genera los tamaños responsivos en el build con `quality={85}`; **todo `<Image>`/`getImage` debe llevar `quality={85}`** y anchos suficientes para pantallas 2K y retina (iPhone 3x: ~1290 px a todo el ancho).
 
-Tres lotes con estilos distintos, unificados a un look **documental y cálido** con una corrección por lote (aprobada por el usuario, definida en `GRADES` de `scripts/photos.mjs`):
-- `gael` — granja (borregos, gallinas, construcciones); todas verticales, subexpuestas → más luz y calidez.
-- `makilema` — platos y equipo; muy saturadas → saturación 0.72 y negros levantados.
-- `propias` — paisajes de celular (incluye HEIC; se convierten con `sips`) → menos saturación.
+Tres lotes con estilos distintos, unificados con una corrección por lote (`GRADES` en `scripts/photos.mjs`). La v1 (negros levantados, saturación muy baja) se veía apagada y de baja calidad; el usuario pidió fotos **más vivas**. v2 actual:
+- `gael` — granja (borregos, gallinas, construcciones); todas verticales, subexpuestas → más brillo, contraste y color.
+- `makilema` — platos y equipo; muy saturadas → solo saturación 0.86, sin tocar el contraste.
+- `propias` — paisajes de celular (incluye HEIC; se convierten con `sips`) → saturación 0.92, un poco de contraste.
+- Regla: no levantar los negros con offsets positivos en `linear`; lava la foto.
 
 **Agregar o cambiar una foto:** añadir/editar una línea en `PHOTOS` (`[lote, archivo original, nombre de salida]`), ejecutar `pnpm photos` (o `pnpm photos <filtro>`), e importar `../assets/fotos/<nombre>.webp` en el componente. Para revisar muchas fotos, generar hojas de contacto con miniaturas numeradas antes de elegir.
 
 Fotos descartadas a propósito: Makilema en mesa blanca sobre fondo negro (#7–#21, look de estudio), especias en penumbra; Gael con comederos de plástico azul (si14, si15).
+
+## Tono de los textos
+
+- Directo y breve: frases cortas, sin explicar de más.
+- **Respeto por los animales:** hablar de la granja como cuidado y crianza ("con cuidado y respeto"). No relacionar a los animales con el plato ni con la parrilla (nada de "de la granja a la parrilla", "prueba lo que criamos", "razas de carne"). El cierre de la página de la granja lleva al mapa, no a reservar.
 
 ## Contenido y datos del negocio
 

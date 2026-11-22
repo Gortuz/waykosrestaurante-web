@@ -31,8 +31,8 @@ const slides = [
 const pictures = await Promise.all(
   slides.map(async (slide) => ({
     ...slide,
-    desktopImg: await getImage({ src: slide.desktop, widths: [1024, 1600, 2400], format: 'webp' }),
-    mobileImg: await getImage({ src: slide.mobile, widths: [480, 800, 1200], format: 'webp' }),
+    desktopImg: await getImage({ src: slide.desktop, widths: [1024, 1600, 2400, 3200], format: 'webp', quality: 85 }),
+    mobileImg: await getImage({ src: slide.mobile, widths: [640, 960, 1290, 1600], format: 'webp', quality: 85 }),
   }))
 );
 ---

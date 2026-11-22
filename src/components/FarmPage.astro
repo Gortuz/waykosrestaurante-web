@@ -10,8 +10,8 @@ import gallo2 from '../assets/fotos/granja-gallo-2.webp';
 import casaMadera from '../assets/fotos/granja-casa-madera.webp';
 import patio from '../assets/fotos/granja-patio.webp';
 import arbol from '../assets/fotos/granja-arbol.webp';
-import { useTranslations, routes, type Lang } from '../i18n/utils';
-import { MENU_PDF_PATH } from '../data/site';
+import { useTranslations, type Lang } from '../i18n/utils';
+import { GOOGLE_MAPS_NAV_URL, WAZE_NAV_URL } from '../data/site';
 
 interface Props {
   lang: Lang;
@@ -58,7 +58,8 @@ const bodyText = 'text-lg text-ink-muted max-w-[46ch]';
       <Image
         src={borregoNegro}
         alt={en ? 'Black-faced sheep looking at the camera in the barn' : 'Borrego de cara negra mirando a la cámara en el establo'}
-        widths={[480, 800, 1200]}
+        widths={[800, 1200, 1600, 2000]}
+        quality={85}
         sizes="(min-width: 1024px) 45vw, 100vw"
         class="w-full aspect-4/5 object-cover"
         loading="eager"
@@ -72,7 +73,8 @@ const bodyText = 'text-lg text-ink-muted max-w-[46ch]';
   <Image
     src={potrero}
     alt={en ? 'Pasture with eucalyptus trees and mountains in La Esperanza, Ibarra' : 'Potrero con eucaliptos y montañas en La Esperanza, Ibarra'}
-    widths={[640, 1024, 1600, 2400]}
+    widths={[1024, 1600, 2400, 3200]}
+    quality={85}
     sizes="100vw"
     class="w-full aspect-4/3 sm:aspect-21/9 object-cover"
     loading="lazy"
@@ -92,7 +94,8 @@ const bodyText = 'text-lg text-ink-muted max-w-[46ch]';
         <Image
           src={photo.src}
           alt={photo.alt}
-          widths={[400, 700, 1000]}
+          widths={[600, 900, 1290, 1600]}
+          quality={85}
           sizes="(min-width: 1024px) 30vw, 50vw"
           class:list={['w-full aspect-3/4 object-cover', { 'col-span-2 lg:col-span-1 aspect-4/3 lg:aspect-3/4': i === 0 }]}
           loading="lazy"
@@ -114,7 +117,8 @@ const bodyText = 'text-lg text-ink-muted max-w-[46ch]';
         <Image
           src={photo.src}
           alt={photo.alt}
-          widths={[400, 700, 1000]}
+          widths={[600, 900, 1290, 1600]}
+          quality={85}
           sizes="(min-width: 1024px) 28vw, 50vw"
           class:list={['w-full aspect-3/4 object-cover', { 'mt-10 sm:mt-16': i === 1 }]}
           loading="lazy"
@@ -135,7 +139,8 @@ const bodyText = 'text-lg text-ink-muted max-w-[46ch]';
       <Image
         src={casaMadera}
         alt={en ? 'Wood and bamboo building on the grounds' : 'Construcción de madera y bambú en el terreno'}
-        widths={[400, 700, 1000]}
+        widths={[600, 900, 1290, 1600]}
+        quality={85}
         sizes="(min-width: 1024px) 25vw, 50vw"
         class="lg:col-span-3 w-full aspect-3/4 object-cover"
         loading="lazy"
@@ -143,7 +148,8 @@ const bodyText = 'text-lg text-ink-muted max-w-[46ch]';
       <Image
         src={patio}
         alt={en ? 'Patio with an earthen wall, plants and a wooden bench' : 'Patio con pared de tierra, plantas y banca de madera'}
-        widths={[400, 700, 1000]}
+        widths={[600, 900, 1290, 1600]}
+        quality={85}
         sizes="(min-width: 1024px) 25vw, 50vw"
         class="lg:col-span-3 w-full aspect-3/4 object-cover"
         loading="lazy"
@@ -151,7 +157,8 @@ const bodyText = 'text-lg text-ink-muted max-w-[46ch]';
       <Image
         src={arbol}
         alt={en ? 'A lone tree in the pasture with mountains behind' : 'Árbol solitario en el potrero con montañas al fondo'}
-        widths={[640, 1024, 1600]}
+        widths={[800, 1200, 1800, 2400]}
+        quality={85}
         sizes="(min-width: 1024px) 50vw, 100vw"
         class="col-span-2 lg:col-span-6 w-full aspect-4/3 lg:aspect-auto lg:h-full object-cover"
         loading="lazy"
@@ -160,7 +167,7 @@ const bodyText = 'text-lg text-ink-muted max-w-[46ch]';
   </div>
 </section>
 
-<!-- Cierre: llevar a la reserva -->
+<!-- Cierre: cómo llegar -->
 <section class="bg-poncho text-white">
   <div class="faja-trim" aria-hidden="true"></div>
   <div class="max-w-7xl mx-auto px-4 sm:px-8 py-16 sm:py-20 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
@@ -170,18 +177,20 @@ const bodyText = 'text-lg text-ink-muted max-w-[46ch]';
     </div>
     <div class="flex flex-wrap items-center gap-x-8 gap-y-4">
       <a
-        href={`${routes.home[lang]}#reservas`}
+        href={GOOGLE_MAPS_NAV_URL}
+        target="_blank"
+        rel="noopener noreferrer"
         class="inline-flex items-center h-13 px-7 bg-white text-poncho font-bold hover:bg-[#f1ede6] transition-colors"
       >
-        {t('hero.ctaReserve')}
+        {t('about.openMaps')}
       </a>
       <a
-        href={MENU_PDF_PATH}
+        href={WAZE_NAV_URL}
         target="_blank"
-        rel="noopener"
+        rel="noopener noreferrer"
         class="text-white font-medium underline decoration-white/50 underline-offset-[6px] hover:decoration-white transition-colors"
       >
-        {t('farm.ctaMenu')}
+        {t('about.openWaze')}
       </a>
     </div>
   </div>
