@@ -1,10 +1,13 @@
 ---
+import { routes, type PageKey } from "../i18n/utils";
+
 interface Props {
   currentLang: "es" | "en";
+  page?: PageKey;
 }
 
-const { currentLang } = Astro.props;
-const targetUrl = currentLang === "es" ? "/en/" : "/";
+const { currentLang, page = "home" } = Astro.props;
+const targetUrl = routes[page][currentLang === "es" ? "en" : "es"];
 const targetTitle = currentLang === "es" ? "Switch to English" : "Cambiar a español";
 const targetHreflang = currentLang === "es" ? "en" : "es";
 ---

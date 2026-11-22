@@ -1,0 +1,188 @@
+---
+import { Image } from 'astro:assets';
+import borregoNegro from '../assets/fotos/granja-borrego-negro.webp';
+import potrero from '../assets/fotos/granja-potrero.webp';
+import rebano from '../assets/fotos/granja-rebano.webp';
+import corral from '../assets/fotos/granja-corral.webp';
+import borregoBlanco from '../assets/fotos/granja-borrego-blanco.webp';
+import gallo from '../assets/fotos/granja-gallo.webp';
+import gallo2 from '../assets/fotos/granja-gallo-2.webp';
+import casaMadera from '../assets/fotos/granja-casa-madera.webp';
+import patio from '../assets/fotos/granja-patio.webp';
+import arbol from '../assets/fotos/granja-arbol.webp';
+import { useTranslations, routes, type Lang } from '../i18n/utils';
+import { MENU_PDF_PATH } from '../data/site';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const en = lang === 'en';
+
+const sheepPhotos = [
+  { src: rebano, alt: en ? 'Flock of sheep in the barn with trees and mountains behind' : 'Rebaño en el establo con árboles y montañas al fondo' },
+  { src: corral, alt: en ? 'Sheep standing on straw inside the barn' : 'Borregos sobre la paja dentro del establo' },
+  { src: borregoBlanco, alt: en ? 'White-faced sheep seen through the barn fence' : 'Borrego de cara blanca visto a través de la reja del establo' },
+];
+
+const chickenPhotos = [
+  { src: gallo, alt: en ? 'Free-range rooster on the farm' : 'Gallo criado en libertad en la granja' },
+  { src: gallo2, alt: en ? 'Rooster walking on straw outdoors' : 'Gallo caminando sobre la paja al aire libre' },
+];
+
+const sectionTitle = 'font-serif font-bold text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.04] text-ink';
+const bodyText = 'text-lg text-ink-muted max-w-[46ch]';
+---
+
+<!-- Encabezado: logo de la granja, título e introducción -->
+<section class="bg-surface px-4 sm:px-8 pt-14 sm:pt-20 pb-16 sm:pb-24">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-12 items-end">
+    <div class="lg:col-span-6">
+      <!-- Logo de Wayko's con "Granja" debajo -->
+      <div class="inline-flex flex-col items-start" aria-label={`Wayko's ${t('farm.label')}`} role="img">
+        <img src="/waykos-horizontal.svg" alt="" width="1182" height="275" class="waykos-logo-svg h-12 sm:h-14 w-auto" />
+        <span class="mt-1.5 self-stretch text-center font-sans font-bold text-accent-text text-sm sm:text-base tracking-[0.55em] pl-[0.55em] border-t-2 border-rule-accent pt-1.5" aria-hidden="true">
+          {t('farm.label').toUpperCase()}
+        </span>
+      </div>
+
+      <h1 class="mt-10 font-serif font-bold text-[clamp(2.75rem,6.5vw,5.5rem)] leading-[0.98] text-ink max-w-[12ch]">
+        {t('farm.title')}
+      </h1>
+      <p class:list={[bodyText, 'mt-6']}>{t('farm.intro')}</p>
+    </div>
+
+    <figure class="lg:col-span-6">
+      <Image
+        src={borregoNegro}
+        alt={en ? 'Black-faced sheep looking at the camera in the barn' : 'Borrego de cara negra mirando a la cámara en el establo'}
+        widths={[480, 800, 1200]}
+        sizes="(min-width: 1024px) 45vw, 100vw"
+        class="w-full aspect-4/5 object-cover"
+        loading="eager"
+      />
+    </figure>
+  </div>
+</section>
+
+<!-- Paisaje a todo el ancho -->
+<figure class="bg-surface">
+  <Image
+    src={potrero}
+    alt={en ? 'Pasture with eucalyptus trees and mountains in La Esperanza, Ibarra' : 'Potrero con eucaliptos y montañas en La Esperanza, Ibarra'}
+    widths={[640, 1024, 1600, 2400]}
+    sizes="100vw"
+    class="w-full aspect-4/3 sm:aspect-21/9 object-cover"
+    loading="lazy"
+  />
+  <figcaption class="max-w-7xl mx-auto px-4 sm:px-8 pt-3 text-sm text-ink-muted">{t('farm.landscapeCaption')}</figcaption>
+</figure>
+
+<!-- Los borregos -->
+<section class="bg-surface px-4 sm:px-8 py-16 sm:py-24">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-5 items-end">
+      <h2 class:list={[sectionTitle, 'lg:col-span-5']}>{t('farm.sheepTitle')}</h2>
+      <p class:list={[bodyText, 'lg:col-span-7']}>{t('farm.sheepText')}</p>
+    </div>
+    <div class="mt-10 sm:mt-14 grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+      {sheepPhotos.map((photo, i) => (
+        <Image
+          src={photo.src}
+          alt={photo.alt}
+          widths={[400, 700, 1000]}
+          sizes="(min-width: 1024px) 30vw, 50vw"
+          class:list={['w-full aspect-3/4 object-cover', { 'col-span-2 lg:col-span-1 aspect-4/3 lg:aspect-3/4': i === 0 }]}
+          loading="lazy"
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Las gallinas -->
+<section class="bg-surface-alt px-4 sm:px-8 py-16 sm:py-24">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-10 items-center">
+    <div class="lg:col-span-5 lg:order-2">
+      <h2 class={sectionTitle}>{t('farm.chickenTitle')}</h2>
+      <p class:list={[bodyText, 'mt-5']}>{t('farm.chickenText')}</p>
+    </div>
+    <div class="lg:col-span-7 lg:order-1 grid grid-cols-2 gap-3 sm:gap-6">
+      {chickenPhotos.map((photo, i) => (
+        <Image
+          src={photo.src}
+          alt={photo.alt}
+          widths={[400, 700, 1000]}
+          sizes="(min-width: 1024px) 28vw, 50vw"
+          class:list={['w-full aspect-3/4 object-cover', { 'mt-10 sm:mt-16': i === 1 }]}
+          loading="lazy"
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- El lugar -->
+<section class="bg-surface px-4 sm:px-8 py-16 sm:py-24">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-5 items-end">
+      <h2 class:list={[sectionTitle, 'lg:col-span-5']}>{t('farm.placeTitle')}</h2>
+      <p class:list={[bodyText, 'lg:col-span-7']}>{t('farm.placeText')}</p>
+    </div>
+    <div class="mt-10 sm:mt-14 grid grid-cols-2 lg:grid-cols-12 gap-3 sm:gap-6">
+      <Image
+        src={casaMadera}
+        alt={en ? 'Wood and bamboo building on the grounds' : 'Construcción de madera y bambú en el terreno'}
+        widths={[400, 700, 1000]}
+        sizes="(min-width: 1024px) 25vw, 50vw"
+        class="lg:col-span-3 w-full aspect-3/4 object-cover"
+        loading="lazy"
+      />
+      <Image
+        src={patio}
+        alt={en ? 'Patio with an earthen wall, plants and a wooden bench' : 'Patio con pared de tierra, plantas y banca de madera'}
+        widths={[400, 700, 1000]}
+        sizes="(min-width: 1024px) 25vw, 50vw"
+        class="lg:col-span-3 w-full aspect-3/4 object-cover"
+        loading="lazy"
+      />
+      <Image
+        src={arbol}
+        alt={en ? 'A lone tree in the pasture with mountains behind' : 'Árbol solitario en el potrero con montañas al fondo'}
+        widths={[640, 1024, 1600]}
+        sizes="(min-width: 1024px) 50vw, 100vw"
+        class="col-span-2 lg:col-span-6 w-full aspect-4/3 lg:aspect-auto lg:h-full object-cover"
+        loading="lazy"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- Cierre: llevar a la reserva -->
+<section class="bg-poncho text-white">
+  <div class="faja-trim" aria-hidden="true"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-8 py-16 sm:py-20 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+    <div>
+      <h2 class="font-serif font-bold text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.04]">{t('farm.ctaTitle')}</h2>
+      <p class="mt-4 text-lg text-white/85">{t('farm.ctaText')}</p>
+    </div>
+    <div class="flex flex-wrap items-center gap-x-8 gap-y-4">
+      <a
+        href={`${routes.home[lang]}#reservas`}
+        class="inline-flex items-center h-13 px-7 bg-white text-poncho font-bold hover:bg-[#f1ede6] transition-colors"
+      >
+        {t('hero.ctaReserve')}
+      </a>
+      <a
+        href={MENU_PDF_PATH}
+        target="_blank"
+        rel="noopener"
+        class="text-white font-medium underline decoration-white/50 underline-offset-[6px] hover:decoration-white transition-colors"
+      >
+        {t('farm.ctaMenu')}
+      </a>
+    </div>
+  </div>
+</section>

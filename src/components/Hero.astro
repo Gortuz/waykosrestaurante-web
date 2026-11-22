@@ -1,6 +1,13 @@
 ---
-import { Image } from 'astro:assets';
-import heroImg from '../assets/restaurante/hero-cordero.webp';
+import { getImage } from 'astro:assets';
+import techoArcoiris from '../assets/fotos/hero-techo-arcoiris.webp';
+import mesera from '../assets/fotos/hero-mesera.webp';
+import chimichurri from '../assets/fotos/hero-chimichurri.webp';
+import borregoNegro from '../assets/fotos/hero-borrego-negro.webp';
+import cordero from '../assets/fotos/hero-cordero.webp';
+import platoCampo from '../assets/fotos/hero-plato-campo.webp';
+import potreroArcoiris from '../assets/fotos/hero-potrero-arcoiris.webp';
+import arcoirisVertical from '../assets/fotos/hero-arcoiris-vertical.webp';
 import { useTranslations, type Lang } from '../i18n/utils';
 import { WHATSAPP_URL, PHONE_DISPLAY } from '../data/site';
 
@@ -11,22 +18,49 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 const prefix = lang === 'en' ? '/en' : '';
+
+// Cada diapositiva: foto horizontal para escritorio y vertical para móvil.
+// "position" ajusta el encuadre (object-position) en cada formato.
+const slides = [
+  { desktop: techoArcoiris, desktopPosition: 'center 45%', mobile: mesera, mobilePosition: 'center 30%' },
+  { desktop: chimichurri, desktopPosition: 'center 55%', mobile: borregoNegro, mobilePosition: 'center 40%' },
+  { desktop: cordero, desktopPosition: 'center 65%', mobile: platoCampo, mobilePosition: 'center 50%' },
+  { desktop: potreroArcoiris, desktopPosition: 'center 50%', mobile: arcoirisVertical, mobilePosition: '60% center' },
+];
+
+const pictures = await Promise.all(
+  slides.map(async (slide) => ({
+    ...slide,
+    desktopImg: await getImage({ src: slide.desktop, widths: [1024, 1600, 2400], format: 'webp' }),
+    mobileImg: await getImage({ src: slide.mobile, widths: [480, 800, 1200], format: 'webp' }),
+  }))
+);
 ---
 
 <!-- Foto y franja comparten la primera pantalla: la franja siempre queda visible -->
 <section id="hero" class="relative flex flex-col h-[calc(100svh-4.5rem)] min-h-[34rem] max-h-[60rem]">
-  <div class="relative flex-1 min-h-0 overflow-hidden bg-carbon">
-    <Image
-      src={heroImg}
-      alt={lang === 'en' ? "Lamb steak from the grill at Wayko's, La Esperanza, Ibarra" : "Steak de cordero a la parrilla en Wayko's, La Esperanza, Ibarra"}
-      widths={[640, 1024, 1600, 2400]}
-      sizes="100vw"
-      class="hero-image absolute inset-0 w-full h-full object-cover object-[60%_75%] sm:object-[center_60%]"
-      loading="eager"
-      fetchpriority="high"
-    />
+  <div class="relative flex-1 min-h-0 overflow-hidden bg-carbon" data-hero-slides>
+    {pictures.map((p, i) => (
+      <picture
+        class:list={['hero-slide absolute inset-0', { 'is-active': i === 0 }]}
+        style={`--pos-desktop: ${p.desktopPosition}; --pos-mobile: ${p.mobilePosition};`}
+      >
+        <source media="(max-width: 767px)" srcset={p.mobileImg.srcSet.attribute} sizes="100vw" />
+        <img
+          src={p.desktopImg.src}
+          srcset={p.desktopImg.srcSet.attribute}
+          sizes="100vw"
+          alt=""
+          class="w-full h-full object-cover"
+          loading={i === 0 ? 'eager' : 'lazy'}
+          fetchpriority={i === 0 ? 'high' : 'low'}
+          decoding="async"
+        />
+      </picture>
+    ))}
+
     <!-- Solo oscurece la parte inferior, donde va el texto -->
-    <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-black/10" aria-hidden="true"></div>
 
     <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-8 flex flex-col justify-end pb-8 sm:pb-16">
       <h1 class="font-serif text-white font-bold leading-[0.95] tracking-[-0.01em] text-[clamp(2.75rem,7.5vw,6.25rem)] max-w-[12ch]">
@@ -50,6 +84,18 @@ const prefix = lang === 'en' ? '/en' : '';
         </a>
       </div>
     </div>
+
+    <!-- Pausa de la rotación (requisito de accesibilidad para contenido que se mueve solo) -->
+    <button
+      type="button"
+      class="hero-toggle absolute right-4 sm:right-8 top-4 sm:top-auto sm:bottom-6 w-10 h-10 inline-flex items-center justify-center border border-white/40 text-white hover:border-white bg-black/20 transition-colors cursor-pointer"
+      aria-label={t('hero.pause')}
+      data-label-pause={t('hero.pause')}
+      data-label-play={t('hero.play')}
+    >
+      <svg class="icon-pause w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 3h3v10H4zM9 3h3v10H9z" /></svg>
+      <svg class="icon-play w-4 h-4 hidden" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" /></svg>
+    </button>
   </div>
 
   <!-- Franja tejida: datos prácticos sobre el rojo poncho -->
@@ -75,3 +121,53 @@ const prefix = lang === 'en' ? '/en' : '';
     </dl>
   </div>
 </section>
+
+<script is:inline>
+  (function () {
+    const root = document.querySelector('[data-hero-slides]');
+    if (!root) return;
+    const slides = [...root.querySelectorAll('.hero-slide')];
+    const toggle = root.querySelector('.hero-toggle');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let index = 0;
+    let timer = null;
+    let paused = reduceMotion;
+
+    function show(next) {
+      slides[index].classList.remove('is-active');
+      index = (next + slides.length) % slides.length;
+      slides[index].classList.add('is-active');
+    }
+
+    function start() {
+      stop();
+      if (!paused && slides.length > 1) timer = setInterval(() => show(index + 1), 7000);
+    }
+
+    function stop() {
+      if (timer) clearInterval(timer);
+      timer = null;
+    }
+
+    function render() {
+      if (!toggle) return;
+      toggle.setAttribute('aria-label', paused ? toggle.dataset.labelPlay : toggle.dataset.labelPause);
+      toggle.querySelector('.icon-pause').classList.toggle('hidden', paused);
+      toggle.querySelector('.icon-play').classList.toggle('hidden', !paused);
+    }
+
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        paused = !paused;
+        render();
+        paused ? stop() : start();
+      });
+    }
+
+    // No rota con la pestaña oculta
+    document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+
+    render();
+    start();
+  })();
+</script>

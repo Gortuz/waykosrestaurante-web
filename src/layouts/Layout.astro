@@ -1,19 +1,20 @@
 ---
 import '../styles/global.css';
 import { Font } from 'astro:assets';
-import { type Lang } from '../i18n/utils';
+import { routes, type Lang, type PageKey } from '../i18n/utils';
 import { SITE_URL, SITE_NAME, PHONE, GEO, OPENING_HOURS, MENU_PDF_PATH, INSTAGRAM_URL, FACEBOOK_URL } from '../data/site';
 
 interface Props {
   title?: string;
   description?: string;
   lang?: Lang;
-  canonical?: string;
   image?: string;
+  page?: PageKey;
 }
 
 const {
-  lang = "es"
+  lang = "es",
+  page = "home",
 } = Astro.props;
 
 const defaultTitle = lang === 'en'
@@ -28,7 +29,7 @@ const title = Astro.props.title || defaultTitle;
 const description = Astro.props.description || defaultDescription;
 
 const siteUrl = SITE_URL;
-const canonicalUrl = Astro.props.canonical || (lang === 'en' ? `${siteUrl}/en/` : `${siteUrl}/`);
+const canonicalUrl = `${siteUrl}${routes[page][lang]}`;
 const ogImageUrl = Astro.props.image || `${siteUrl}/og-image.jpg`;
 
 // Structured Data (JSON-LD) for Google Rich Snippets (Restaurant)
@@ -102,9 +103,9 @@ const restaurantSchema = {
     <link rel="canonical" href={canonicalUrl} />
 
     <!-- Multi-language Hreflang Tags -->
-    <link rel="alternate" hreflang="es" href={`${siteUrl}/`} />
-    <link rel="alternate" hreflang="en" href={`${siteUrl}/en/`} />
-    <link rel="alternate" hreflang="x-default" href={`${siteUrl}/`} />
+    <link rel="alternate" hreflang="es" href={`${siteUrl}${routes[page].es}`} />
+    <link rel="alternate" hreflang="en" href={`${siteUrl}${routes[page].en}`} />
+    <link rel="alternate" hreflang="x-default" href={`${siteUrl}${routes[page].es}`} />
 
     <!-- Open Graph (WhatsApp, Facebook, Social) -->
     <meta property="og:title" content={title} />

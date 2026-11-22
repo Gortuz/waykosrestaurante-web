@@ -1,6 +1,6 @@
 ---
 import WaykosLogo from './WaykosLogo.astro';
-import { useTranslations, type Lang } from '../i18n/utils';
+import { useTranslations, routes, type Lang } from '../i18n/utils';
 import { SITE_NAME, INSTAGRAM_URL, FACEBOOK_URL, WHATSAPP_URL, PHONE_DISPLAY, MENU_PDF_PATH } from '../data/site';
 
 interface Props {
@@ -40,6 +40,14 @@ const contactLinks = [
             </a>
           </li>
         ))}
+        <li>
+          <a
+            href={routes.farm[lang]}
+            class="font-medium underline decoration-white/30 underline-offset-4 hover:decoration-white transition-colors"
+          >
+            {t('nav.farm')}
+          </a>
+        </li>
         <li>
           <a
             href={MENU_PDF_PATH}

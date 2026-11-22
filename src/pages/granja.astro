@@ -1,0 +1,19 @@
+---
+export const prerender = true;
+
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import FarmPage from '../components/FarmPage.astro';
+import Footer from '../components/Footer.astro';
+import { useTranslations } from '../i18n/utils';
+
+const t = useTranslations('es');
+---
+
+<Layout lang="es" page="farm" title={t('farm.metaTitle')} description={t('farm.metaDescription')}>
+  <Navbar lang="es" page="farm" />
+  <main>
+    <FarmPage lang="es" />
+  </main>
+  <Footer lang="es" />
+</Layout>

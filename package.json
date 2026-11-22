@@ -11,7 +11,8 @@
     "preview": "astro preview",
     "check": "astro check",
     "deploy": "astro build && wrangler deploy",
-    "astro": "astro"
+    "astro": "astro",
+    "photos": "node scripts/photos.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.6",

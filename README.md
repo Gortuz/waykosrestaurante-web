@@ -41,7 +41,8 @@
   - **Especialidades de la Casa**: Tarjetas de cordero al grill, maduro con queso, lasaña y pizzas, con enlace a la carta completa en `/menu.pdf`.
   - **Reservas por WhatsApp**: Formulario que genera el mensaje de reserva en el idioma de la página. Propone el próximo día de atención y avisa si la fecha elegida cae en un día que normalmente no abrimos.
   - **Nuestro Equipo** y **Nosotros & Ubicación**: Mapa de Google Maps y accesos directos a **Google Maps** y **Waze**.
-- **Imágenes responsivas**: Fotos en `src/assets/restaurante/` (WebP, máx. 2400 px) servidas con `srcset` en varios tamaños por `astro:assets`.
+- **Imágenes responsivas**: Fotos en `src/assets/fotos/` (WebP, máx. 2400 px), generadas con `pnpm photos` desde los originales y servidas con `srcset` por `astro:assets`.
+- **La granja**: sección en la portada y página propia en `/granja` (`/en/farm`).
 - **SEO local**: JSON-LD de tipo `Restaurant`, `hreflang`, Open Graph (`public/og-image.jpg`, 1200×630) y sitemap generado con `@astrojs/sitemap`.
 
 ---
@@ -71,7 +72,7 @@ waykosrestaurante-web/
 │   ├── robots.txt
 │   └── waykos*.svg                # Logotipos
 ├── src/
-│   ├── assets/restaurante/        # Fotografías WebP
+│   ├── assets/fotos/              # Fotografías WebP (generadas por scripts/photos.mjs)
 │   ├── components/                # About, Footer, Hero, LanguagePicker, Navbar,
 │   │                              # Reservation, Specialties, Team, ThemeToggle, WaykosLogo
 │   ├── data/
@@ -105,6 +106,7 @@ pnpm check       # verificación de tipos (astro check)
 pnpm build       # compilar a dist/
 pnpm preview     # previsualizar la compilación
 pnpm run deploy  # compilar y desplegar con wrangler
+pnpm photos      # reprocesar fotos desde waykos-design/ (ver CLAUDE.md)
 ```
 
 Variables de entorno opcionales: copia `.env.example` a `.env`.

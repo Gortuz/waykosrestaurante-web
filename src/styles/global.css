@@ -114,18 +114,30 @@ html.dark .waykos-logo-svg,
   filter: brightness(0) invert(1);
 }
 
-/* Hero: la foto se asienta una sola vez al cargar */
-@keyframes hero-settle {
-  from {
-    transform: scale(1.06);
-  }
-  to {
-    transform: scale(1);
-  }
+/* Hero: fundido lento entre fotos; la activa se acerca muy despacio */
+.hero-slide {
+  opacity: 0;
+  transition: opacity 1.6s ease;
 }
 
-.hero-image {
-  animation: hero-settle 1.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+.hero-slide.is-active {
+  opacity: 1;
+}
+
+.hero-slide img {
+  object-position: var(--pos-desktop, center);
+  transform: scale(1.06);
+  transition: transform 9s linear;
+}
+
+.hero-slide.is-active img {
+  transform: scale(1);
+}
+
+@media (max-width: 767px) {
+  .hero-slide img {
+    object-position: var(--pos-mobile, center);
+  }
 }
 
 /* Formularios: normalización iOS / Safari */

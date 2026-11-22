@@ -14,3 +14,11 @@ export function useTranslations(lang: Lang) {
   };
 }
 
+
+// Rutas de cada página por idioma (para navegación, hreflang y selector de idioma)
+export const routes = {
+  home: { es: '/', en: '/en/' },
+  farm: { es: '/granja/', en: '/en/farm/' },
+} as const;
+
+export type PageKey = keyof typeof routes;
