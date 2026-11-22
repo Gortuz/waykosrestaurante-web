@@ -17,8 +17,8 @@ const {
   page = "home",
 } = Astro.props;
 
-// Título corto de la pestaña (decisión del usuario); la ubicación va en la descripción
-const defaultTitle = lang === 'en' ? "Wayko's Restaurant" : "Wayko's Restaurante";
+// Título de la pestaña: nombre corto + ubicación (ayuda al SEO local)
+const defaultTitle = lang === 'en' ? "Wayko's Restaurant | La Esperanza, Ibarra" : "Wayko's Restaurante | La Esperanza, Ibarra";
 
 const defaultDescription = lang === 'en'
   ? "Rural restaurant in La Esperanza, Ibarra, Ecuador. Lamb, grilled steaks and artisanal pizzas, cooked with local, seasonal produce."
